@@ -2,10 +2,18 @@
 #include <string>
 using namespace std;
 
+enum PokemonChoice{
+    
+    Charmander,
+    Bulbasaur,
+    Squirtle,
+    InvalidChoice
+};
+
 int main() {
 
     string name;
-    string pokemon;
+    PokemonChoice ch_pokemon = InvalidChoice;
 
     cout << "Professor Oak: Hello there! Welcome to the world of Pokemon!\n";
     cout << "Professor Oak: My name is Oak. People call me the Pokemon Professor!\n";
@@ -27,31 +35,50 @@ int main() {
 
     cout << "Professor Oak: So, which one will it be? Enter the number of your choice: ";
     cin >> ch;
-
+    
     switch (ch) {
+        
     case 1:
-        pokemon = "Charmander";
-        cout << "Professor Oak: A fiery choice! Charmander is yours!\n";
+        ch_pokemon = Charmander;
         break;
 
     case 2:
-        pokemon = "Bulbasaur";
-        cout << "Professor Oak: A fine choice! Bulbasaur is always ready to grow on you!\n";
+        ch_pokemon = Bulbasaur;
         break;
 
     case 3:
-        pokemon = "Squirtle";
+        ch_pokemon = Squirtle;
+        break;
+
+    default:
+        ch_pokemon = InvalidChoice;
+        break;
+
+    }
+
+    switch (ch_pokemon) {
+
+    case Charmander:
+        cout << "Professor Oak: A fiery choice! Charmander is yours!\n";
+        break;
+
+    case Bulbasaur:
+        cout << "Professor Oak: A fine choice! Bulbasaur is always ready to grow on you!\n";
+        break;
+
+    case Squirtle:
         cout << "Professor Oak: Splendid! Squirtle will keep you cool under pressure!\n";
         break;
 
     default:
         cout << "Professor Oak: Hmm, that doesn't seem right. Let me choose for you...\n";
-        pokemon = "Pikachu";
-        cout << "Professor Oak: Just kidding! Let's go with Pikachu, the surprise guest!\n";
+        ch_pokemon = Charmander;
+        cout << "Professor Oak: Just kidding! Let's go with Charmander, the fiery dragon in the making!\n";
         break;
+
     }
 
-    cout << "Professor Oak: " << pokemon << " and you, " << name << ", are going to be the best of friends!\n";
+    cout << "Professor Oak: " << (ch_pokemon == Charmander ? "Charmander" : ch_pokemon == Bulbasaur ? "Bulbasaur" : "Squirtle") << " and you, " << name << ", are going to be the best of friends!\n";
     cout << "Professor Oak: Your journey begins now! Get ready to explore the vast world of Pokemon!\n";
 
     return 0;
