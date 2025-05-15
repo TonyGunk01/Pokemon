@@ -3,11 +3,18 @@
 using namespace std;
 
 enum class PokemonChoice {
-
     Charmander,
     Bulbasaur,
     Squirtle,
     InvalidChoice
+};
+
+enum class PokemonType {
+    Fire,
+    Electric,
+    Water,
+    Earth,
+    Normal
 };
 
 int main() {
@@ -19,13 +26,13 @@ int main() {
     cout << "Professor Oak: My name is Oak. People call me the Pokemon Professor!\n";
     cout << "Professor Oak: But enough about me. Let's talk about you!\n";
 
-    cout << "Professor Oak: First, tell me, what’s your name?\n";
+    cout << "Professor Oak: First, tell me, whatâ€™s your name?\n";
     cin >> name;
 
     cout << "Professor Oak: Ah, " << name << "! What a fantastic name!\n";
-    cout << "Professor Oak: You must be eager to start your adventure. But first, you’ll need a Pokemon of your own!\n";
+    cout << "Professor Oak: You must be eager to start your adventure. But first, youâ€™ll need a Pokemon of your own!\n";
 
-    cout << "Professor Oak: I have three Pokemon here with me. They’re all quite feisty!\n";
+    cout << "Professor Oak: I have three Pokemon here with me. Theyâ€™re all quite feisty!\n";
     cout << "Professor Oak: Choose wisely...\n";
     cout << "Choice 1. Charmander - The fire type. A real hothead!\n";
     cout << "Choice 2. Bulbasaur - The grass type. Calm and collected!\n";
