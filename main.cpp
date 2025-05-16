@@ -25,8 +25,12 @@ class Pokemon
         PokemonType type;
         int health;
 
-        Pokemon() {
-
+        Pokemon() 
+        {
+            name = "Unknown";
+            type = PokemonType::Normal;
+            health = 50;
+            cout << "A new Pokemon has been created with the default constructor!\n";
         }
 
         Pokemon(string p_name, PokemonType p_type, int p_health) 
@@ -34,6 +38,20 @@ class Pokemon
             name = p_name;
             type = p_type;
             health = p_health;
+            cout << "A new Pokemon named " << name << " has been created!\n";
+        }
+
+        Pokemon(const Pokemon& other)
+        {
+            name = other.name;
+            type = other.type;
+            heatlh = other.health;
+            cout << "A new Pokemon has been copied from " << other.name << "!\n";
+        }
+
+        ~Pokemon()
+        {
+            cout << name << " has been released!\n";
         }
 
         void attack() 
@@ -47,6 +65,20 @@ class Player
     public:
         string name;
         Pokemon chosenPokemon;
+
+        Player()
+        {
+            name = "Trainer";
+            chosenPokemon = Pokemon();
+            cout << "A new player named " << name << " has been created!\n";
+        }
+
+        Player(std::string p_name, Pokemon p_chosenPokemon)
+        {
+            name = p.name;
+            chosenPokemon = p_chosenPokemon;
+            cout << "Player " << name << " has been created!\n";
+        }
 
         void choosePokemon(int choice) 
         {
@@ -106,16 +138,27 @@ class ProfessorOak
 
 int main() 
 {
-    ProfessorOak professor;
-    Pokemon placeholderPokemon;
-    Player player;
+    Pokemon defaultPokemon;
+    Pokemon charmander("Charmander", PokemonType::FIRE, 100);
 
-    placeholderPokemon.name = "Pikachu";
-    placeholderPokemon.type = PokemonType::ELECTRIC;
-    placeholderPokemon.health = 40;
+    cout << "Pokemon Details:\n";
+    cout << "Name: " << defaultPokemon.name << "\nType: " << (int)defaultPokemon.type << "\nHealth: " << defaultPokemon.health << "\n";
+    cout << "Name: " << charmander.name << "\nType: " << (int)charmander.type << "\nHealth: " << charmander.health << "\n";
 
-    player.name = "Trainer";
-    professor.name = "Professor Oak";
+    Pokemon bulbasaur("Bulbasaur", PokemonType::GRASS, 100);
+    Pokemon bulbasaurCopy = bulbasaur;
+    cout << "Original Pokemon Health: " << bulbasaur.health << "\n";
+    cout << "Copied Pokemon Health: " << bulbasaurCopy.health << "\n";
+
+    bulbasaurCopy.health = 80;
+    cout << "After Modification:\n";
+    cout << "Original Pokemon Health: " << bulbasaur.health << "\n";
+    cout << "Copied Pokemon Health: " << bulbasaurCopy.health << "\n";
+
+    Pokemon squirtle("Squirtle", PokemonType::WATER, 100);
+
+    ProfessorOak professor("Professor Oak");
+    Player player("Ash", charmander);
 
     professor.greetPlayer(player);
     professor.offerPokemonChoices(player);
