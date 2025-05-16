@@ -1,5 +1,4 @@
 #include <iostream>
-#include <limits>
 #include <string>
 
 using namespace std;
@@ -32,46 +31,46 @@ enum class PokemonType
     GRASS,
     WATER,
     ELECTRIC,
-    NORMAL
+    NORMAL 
 };
 
 class Pokemon 
 {
-public:
-    string name;
-    PokemonType type;
-    int health;
+    public:
+        string name;
+        PokemonType type;
+        int health;
 
-    Pokemon() 
-    {
-        name = "Unknown";
-        type = PokemonType::NORMAL;
-        health = 50;
-    }
+        Pokemon() 
+        {
+            name = "Unknown";
+            type = PokemonType::NORMAL;
+            health = 50;
+        }
 
-    Pokemon(std::string p_name, PokemonType p_type, int p_health) 
-    {
-        name = p_name;
-        type = p_type;
-        health = p_health;
-    }
+        Pokemon(std::string p_name, PokemonType p_type, int p_health) 
+        {
+            name = p_name;
+            type = p_type;
+            health = p_health;
+        }
 
-    Pokemon(const Pokemon& other) 
-    {
-        name = other.name;
-        type = other.type;
-        health = other.health;
-    }
+        Pokemon(const Pokemon& other) 
+        {
+            name = other.name;
+            type = other.type;
+            health = other.health;
+        }
 
-    ~Pokemon() 
-    {
+        ~Pokemon() 
+        {
         
-    }
+        }
 
-    void attack() 
-    { 
-        cout << name << " attacks with a powerful move!\n"; 
-    }
+        void attack() 
+        { 
+            cout << name << " attacks with a powerful move!\n"; 
+        }
 };
 
 class Player 
@@ -99,12 +98,15 @@ class Player
                 case PokemonChoice::CHARMANDER:
                     chosenPokemon = Pokemon("Charmander", PokemonType::FIRE, 100);
                     break;
+
                 case PokemonChoice::BULBASAUR:
                     chosenPokemon = Pokemon("Bulbasaur", PokemonType::GRASS, 100);
                     break;
+
                 case PokemonChoice::SQUIRTLE:
                     chosenPokemon = Pokemon("Squirtle", PokemonType::WATER, 100);
                     break;
+
                 default:
                     chosenPokemon = Pokemon("Pikachu", PokemonType::ELECTRIC, 100);
                     break;
@@ -129,9 +131,10 @@ public:
     {
         cout << name << ": Hello there! Welcome to the world of Pokemon!\n";
         waitForEnter();
-        cout << name
-            << ": My name is Oak. People call me the Pokemon Professor!\n";
+
+        cout << name << ": My name is Oak. People call me the Pokemon Professor!\n";
         waitForEnter();
+
         cout << name << ": But enough about me. Let's talk about you!\n";
         waitForEnter();
     }
@@ -165,7 +168,6 @@ public:
 
     void explainMainQuest(Player& player) 
     {
-        
         clearConsole();
 
         cout << "Professor Oak: " << player.name << "!, I am about to explain you about your upcoming grand adventure.\n";
@@ -174,10 +176,10 @@ public:
         cout << "Professor Oak: You see, becoming a Pokémon Master is no easy feat. It takes courage, wisdom, and a bit of luck!\n";
         waitForEnter();
 
-        cout << "Professor Oak: Your mission, should you choose to accept it, and trust me, you really don’t have a choice, is to collect all the Pokémon Badges and conquer the Pokémon League.\n";
+        cout << "Professor Oak: Your mission, should you choose to accept it and trust me, you really don’t have a choice, is to collect all the Pokémon Badges and conquer the Pokémon League.\n";
         waitForEnter();
 
-        cout << "\n" << player.name << ": Wait... that sounds a lot like every other Pokémon game out there...\n";
+        cout << "\n"  << player.name  << ": Wait... that sounds a lot like every other Pokémon game out there...\n";
         waitForEnter();
 
         cout << "Professor Oak: Shhh! Don't break the fourth wall, " << player.name << "! This is serious business!\n";
@@ -186,7 +188,7 @@ public:
         cout << "\nProfessor Oak: To achieve this, you’ll need to battle wild Pokémon, challenge gym leaders, and of course, keep your Pokémon healthy at the PokeCenter.\n";
         waitForEnter();
 
-        cout << "Professor Oak: Along the way, you'll capture new Pokémon to strengthen your team. Just remember—there’s a limit to how many Pokémon you can carry, so choose wisely!\n";
+        cout << "Professor Oak: Along the way, you'll capture new Pokémon to strengthen your team. Just remember, there’s a limit to how many Pokémon you can carry, so choose wisely!\n";
         waitForEnter();
 
         cout << "\n" << player.name << ": Sounds like a walk in the park... right?\n";
@@ -256,10 +258,11 @@ void gameLoop(Player& player)
                 cout << "You try to quit, but Professor Oak's voice echoes: "
                     "'There's no quitting in Pokémon training!'\n";
                 cout << "Are you sure you want to quit? (y/n): ";
+
                 char quitChoice;
                 cin >> quitChoice;
-                if (quitChoice == 'y' || quitChoice == 'Y') 
-                {
+
+                if (quitChoice == 'y' || quitChoice == 'Y') {
                     keepPlaying = false;
                 }
                 break;
