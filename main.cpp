@@ -1,4 +1,3 @@
-#include "Player.hpp"
 #include "PokemonType.hpp"
 #include "PokemonChoice.hpp"
 #include "Utility.hpp"
@@ -46,6 +45,8 @@ class Pokemon
             cout << name << " attacks with a powerful move!\n"; 
         }
 };
+
+#include "Player.hpp"
 
 class ProfessorOak 
 {
