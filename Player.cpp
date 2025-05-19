@@ -1,5 +1,8 @@
 #include "Player.hpp"
 #include "iostream"
+#include "PokemonChoice.hpp"
+#include "PokemonType.hpp"
+#include "Utility.hpp"
 
 using namespace std;
 
