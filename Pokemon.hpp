@@ -1,4 +1,5 @@
 #include <string>
+enum PokemonType;
 
 using namespace std;
 
