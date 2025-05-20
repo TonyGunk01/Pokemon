@@ -1,5 +1,4 @@
 #include <string>
-#include "PokemonType.hpp"
 
 using namespace std;
 
