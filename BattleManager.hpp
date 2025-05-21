@@ -1,5 +1,6 @@
 #include "Pokemon.hpp"
 #include "Player.hpp"
+#include "BattleState.hpp"
 
 class BattleManager 
 {
@@ -7,6 +8,8 @@ class BattleManager
         void startBattle(Player& player, Pokemon& wildPokemon);
 
     private:
-        void battle(Pokemon& playerPokemon, Pokemon& wildPokemon);
-        void handleBattleOutcome(Player& player, bool playerWon);
+        BattleState battleState;
+        void battle();
+        void handleBattleOutcome();
+        void updateBattleState();
 };
