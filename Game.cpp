@@ -4,6 +4,7 @@
 #include "Utility.hpp"
 #include "WildEncounterManager.hpp"
 #include <iostream>
+
 using namespace std;
 
 Game::Game() 
@@ -22,7 +23,7 @@ Game::Game()
 
 void Game::gameLoop(Player& player) 
 {
-
+    BattleManager battleManager;
     int choice;
     bool keepPlaying = true;
 
@@ -44,19 +45,20 @@ void Game::gameLoop(Player& player)
 
         switch (choice) 
         {
-
             case 1: 
             {
                 WildEncounterManager encounterManager;
                 Pokemon encounteredPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
 
-                cout << "A wild " << encounteredPokemon.name << " appeared!\n";
+                battleManager.startBattle(player, wildPokemon);
                 break;
             }
 
             case 2: 
             {
-                cout << "You head to the PokeCenter, but Nurse Joy is out on a coffee break. Guess your Pokémon will have to tough it out for now!\n";
+                cout << "You head to the PokeCenter\n";
+                player.chosenPokemon.heal();
+				cout << player.chosenPokemon.name << "'s health is fully restored!\n";
                 break;
             }
 
@@ -74,16 +76,7 @@ void Game::gameLoop(Player& player)
 
             case 5: 
             {
-                cout << "You try to quit, but Professor Oak's voice echoes: 'There's no quitting in Pokémon training!'\n";
-                cout << "Are you sure you want to quit? (y/n): ";
-
-                char quitChoice;
-                cin >> quitChoice;
-
-                if (quitChoice == 'y' || quitChoice == 'Y') 
-                {
-                    keepPlaying = false;
-                }
+                keepPlaying = false;
 
                 break;
             }
@@ -93,7 +86,6 @@ void Game::gameLoop(Player& player)
                 cout << "That's not a valid choice. Try again!\n";
                 break;
             }
-
         }
 
         Utility::waitForEnter();
