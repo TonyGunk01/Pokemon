@@ -9,6 +9,7 @@ class Pokemon
 		string name;
 		PokemonType type;
 		int health;
+		int maxhealth;
 
 		Pokemon();
 
@@ -19,4 +20,8 @@ class Pokemon
 		~Pokemon();
 
 		void attack();
+
+		void takeDamage(int damage);
+
+		bool isFainted() const;
 };

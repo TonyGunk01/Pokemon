@@ -1,5 +1,5 @@
-#include "Pokemon.hpp"
 #include <iostream>
+#include "Pokemon.hpp"
 #include "PokemonType.hpp"
 
 using namespace std;
@@ -24,7 +24,22 @@ Pokemon::~Pokemon()
 
 }
 
-void Pokemon::attack() 
+void Pokemon::attack(Pokemon& target) 
 {
-    cout << name << " attacks with a powerful move!\n";
+    int damage = 10;
+    cout << name << " attacks " << target.name << " for " << damage << " damage!\n";
+}
+
+void Pokemon::takeDamage(int damage) 
+{
+    health -= damage;
+    if (health < 0) {
+        health = 0;
+    }
+    cout << name << " takes " << damage << " damage! Health is now " << health << ".\n";
+}
+
+bool Pokemon::isFainted() const 
+{
+    return health <= 0;
 }
