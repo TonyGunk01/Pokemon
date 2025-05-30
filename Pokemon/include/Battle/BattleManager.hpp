@@ -1,17 +1,20 @@
 #include "../../include/Pokemon/Pokemon.hpp"
-#include "../../include/Character/Player/Player.hpp"
+#include "../../include/Character/Player/Player.hpp" 
 #include "../../include/Battle/BattleState.hpp"
 
-class BattleManager 
-{
-    public:
-        void startBattle(Player& player, Pokemon& wildPokemon);
+namespace N_BattleManager
+{ 
+    class BattleManager 
+    {
+        public:
+            void startBattle(N_Player::Player& player, N_Pokemon::Pokemon& wildPokemon); 
 
-    private:
-        BattleState battleState;
-        void battle();
-        void battle(Pokemon& playerPokemon, Pokemon& wildPokemon);
-        void handleBattleOutcome(Player& player, bool playerWon); 
-        void handleBattleOutcome(); 
-        void updateBattleState();
-};
+        private:
+            N_BattleState::BattleState battleState;
+            void battle();
+            void battle(N_Pokemon::Pokemon& playerPokemon, N_Pokemon::Pokemon& wildPokemon);
+            void handleBattleOutcome(N_Player::Player& player, bool playerWon); 
+            void handleBattleOutcome(); 
+            void updateBattleState();
+    };
+}
