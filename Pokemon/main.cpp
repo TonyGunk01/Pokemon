@@ -119,12 +119,12 @@ class ProfessorOak
 
         void offerPokemonChoices(Player& player) 
         {
-            cout << name << ": First, tell me, what’s your name?\n";
+            cout << name << ": First, tell me, whatï¿½s your name?\n";
             getline(cin, player.name);
             cout << endl << name << ": Ah, " << player.name << "! What a fantastic name!\n";
-            cout << name << ": You must be eager to start your adventure. But first, you’ll need a Pokemon of your own!\n";
+            cout << name << ": You must be eager to start your adventure. But first, youï¿½ll need a Pokemon of your own!\n";
 
-            cout << name << ": I have three Pokemon here with me. They’re all quite feisty!\n";
+            cout << name << ": I have three Pokemon here with me. Theyï¿½re all quite feisty!\n";
             cout << name << ": Choose wisely...\n"; cout << "1. Charmander - The fire type. A real hothead!\n";
             cout << "2. Bulbasaur - The grass type. Calm and collected!\n";
             cout << "3. Squirtle - The water type. Cool as a cucumber!\n";
