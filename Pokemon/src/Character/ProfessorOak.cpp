@@ -5,13 +5,15 @@
 #include <iostream>
 
 using namespace std;
+using namespace N_ProfessorOak;
+using namespace N_Utility;
 
 ProfessorOak::ProfessorOak(string p_name)
 {
     name = p_name;
 }
 
-void ProfessorOak::greetPlayer(Player& player)
+void ProfessorOak::greetPlayer(N_Player::Player& player)
 {
     cout << name << ": Hello there! Welcome to the world of Pokemon!\n";
     Utility::waitForEnter();
@@ -23,7 +25,7 @@ void ProfessorOak::greetPlayer(Player& player)
     Utility::waitForEnter();
 }
 
-void ProfessorOak::offerPokemonChoices(Player& player)
+void ProfessorOak::offerPokemonChoices(N_Player::Player& player)
 {
     cout << name << ": First, tell me, what's your name? \t [Please Enter Your Name]\n";
     getline(cin, player.name);
@@ -49,7 +51,7 @@ void ProfessorOak::offerPokemonChoices(Player& player)
     player.choosePokemon(choice);
 }
 
-void ProfessorOak::explainMainQuest(Player& player)
+void ProfessorOak::explainMainQuest(N_Player::Player& player)
 {
     Utility::clearConsole();
 
