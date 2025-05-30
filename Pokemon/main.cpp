@@ -42,6 +42,7 @@ class ProfessorOak
             Utility::waitForEnter();
 
             cout << name << ": I have three Pokemon here with me. They�re all quite feisty!\n";
+
             Utility::waitForEnter();
 
             cout << name << ": Choose wisely...\n";
@@ -68,6 +69,7 @@ class ProfessorOak
             Utility::waitForEnter();
 
             cout << "Professor Oak: Your mission, should you choose to accept it and trust me, you really don�t have a choice, is to collect all the Pokemon Badges and conquer the Pokemon League.\n";
+
             Utility::waitForEnter();
 
             cout << "\n"  << player.name  << ": Wait... that sounds a lot like every other Pokemon game out there...\n";
