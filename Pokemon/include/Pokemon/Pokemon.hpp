@@ -1,21 +1,23 @@
 #pragma once
 
 #include <string>
-#include "PokemonType.hpp"
+#include "PokemonType.hpp" 
 using namespace std;
 
-class Pokemon
+namespace N_Pokemon
 {
+    class Pokemon
+    {
     public:
         string name;
-        PokemonType type;
+        N_PokemonType::PokemonType type;
         int health;
-        int maxHealth; 
+        int maxHealth;
         int attackPower;
 
         Pokemon();
 
-        Pokemon(const string& p_name, PokemonType p_type, int p_maxHealth, int p_attackPower); // Use const reference for string
+        Pokemon(const string& p_name, N_PokemonType::PokemonType p_type, int p_maxHealth, int p_attackPower);
 
         Pokemon(const Pokemon& p_other);
 
@@ -28,4 +30,5 @@ class Pokemon
         bool isFainted() const;
 
         void heal();
-};
+    };
+}

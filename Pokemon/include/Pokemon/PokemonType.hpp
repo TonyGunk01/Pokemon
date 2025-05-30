@@ -1,12 +1,15 @@
 #pragma once
 
-enum class PokemonType
+namespace N_PokemonType
 {
-    NORMAL,
-    BUG,
-    POISON,
-    FIRE,
-    WATER,
-    GRASS,
-    ELECTRIC
-};
+    enum class PokemonType
+    {
+        Fire,
+        Water,
+        Grass,
+        Electric,
+        Psychic,
+        Poison,
+        Normal
+    };
+}

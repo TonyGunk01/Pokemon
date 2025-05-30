@@ -2,13 +2,19 @@
 
 #include <vector>
 #include <string>
-#include "Pokemon.hpp"
+#include "Pokemon.hpp" 
 
 using namespace std;
 
-struct Grass
+namespace N_grass
 {
-	string environmentType;
-	vector<Pokemon> wildPokemonList;
-	int encounterRate;
-};
+	struct Grass
+	{
+		string environmentType;
+		vector<N_Pokemon::Pokemon> wildPokemonList; 
+		int encounterRate;
+
+		Grass(const string& envType, const vector<N_Pokemon::Pokemon>& wildPokemon, int rate)
+			: environmentType(envType), wildPokemonList(wildPokemon), encounterRate(rate) {}
+	};
+}
