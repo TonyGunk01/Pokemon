@@ -2,10 +2,13 @@
 #include <iostream>
 #include <limits>
 
-class Utility
+namespace N_Utility
 {
-    public:
-        static void clearConsole();
-        static void waitForEnter();
-        static void clearInputBuffer();
-};
+    class Utility
+    {
+        public:
+            static void clearConsole();
+            static void waitForEnter();
+            static void clearInputBuffer();
+    };
+}
