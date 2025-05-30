@@ -8,27 +8,28 @@ namespace N_Pokemon
 {
     class Pokemon
     {
-    public:
-        string name;
-        N_PokemonType::PokemonType type;
-        int health;
-        int maxHealth;
-        int attackPower;
+        protected:
+            string name;
+            N_PokemonType::PokemonType type;
+            int health;
+            int maxHealth;
+            int attackPower;
 
-        Pokemon();
+        public:
+            Pokemon();
 
-        Pokemon(const string& p_name, N_PokemonType::PokemonType p_type, int p_maxHealth, int p_attackPower);
+            Pokemon(const string& p_name, N_PokemonType::PokemonType p_type, int p_maxHealth, int p_attackPower);
 
-        Pokemon(const Pokemon& p_other);
+            Pokemon(const Pokemon& p_other);
 
-        ~Pokemon();
+            ~Pokemon();
 
-        void attack(Pokemon& target);
+            void attack(Pokemon& target);
 
-        void takeDamage(int damage);
+            void takeDamage(int damage);
 
-        bool isFainted() const;
+            bool isFainted() const;
 
-        void heal();
+            void heal();
     };
 }
