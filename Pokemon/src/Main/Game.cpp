@@ -8,19 +8,26 @@
 #include <iostream>
 
 using namespace std;
+using namespace N_Game;
+using namespace N_Pokemon;
+using namespace N_PokemonType;
+using namespace N_Utility;
+using namespace N_BattleManager;
+using namespace N_Player;
+using namespace N_WildEncounterManager;
 
-Game::Game() 
+
+Game::Game() : forestGrass(
+    "Forest",
+    {
+        Pokemon("Pidgey", PokemonType::Normal, 40, 10),
+        Pokemon("Caterpie", PokemonType::Psychic, 35, 5),
+        Pokemon("Zubat", PokemonType::Poison, 30, 8)
+    },
+    70
+)
+
 {
-    forestGrass = 
-    { 
-        "Forest", 
-        {
-            Pokemon("Pidgey", PokemonType::NORMAL, 40, 10), 
-            Pokemon("Caterpie", PokemonType::BUG, 35, 5), 
-            Pokemon("Zubat", PokemonType::POISON, 30, 8)
-        }, 
-        70
-    };
 }
 
 void Game::gameLoop(Player& player) 
