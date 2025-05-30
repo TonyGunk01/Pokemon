@@ -1,14 +1,19 @@
 #include "../../include/Battle/WildEncounterManager.hpp"
 #include <cstdlib>
-#include <ctime> // Added this include for the time function
+#include <ctime> 
 
-WildEncounterManager::WildEncounterManager()
+namespace N_WildEncounterManager 
 {
-	srand(time(0)); // Initializes the random seed
-}
 
-WildPokemon WildEncounterManager::getRandomPokemonFromGrass(const Grass& grass)
-{
-	int randomIndex = rand() % grass.wildPokemonList.size();
-	return grass.wildPokemonList[randomIndex];
+	WildEncounterManager::WildEncounterManager()
+	{
+		srand(time(0)); 
+	}
+
+	WildPokemon WildEncounterManager::getRandomPokemonFromGrass(const N_grass::Grass& grass)
+	{
+		int randomIndex = rand() % grass.wildPokemonList.size();
+		return grass.wildPokemonList[randomIndex];
+	}
+
 }
