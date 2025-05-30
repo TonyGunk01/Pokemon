@@ -3,9 +3,11 @@
 
 #include <iostream>
 
-using namespace std;  
+using namespace std;
+using namespace N_Pokemon;
+using namespace N_PokemonType;
 
-Pokemon::Pokemon() : name("Unknown"), type(PokemonType::NORMAL), health(50), maxHealth(50), attackPower(10)  
+Pokemon::Pokemon() : name("Unknown"), type(PokemonType::Normal), health(50), maxHealth(50), attackPower(10)  
 {  
 
 }  
