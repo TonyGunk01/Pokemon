@@ -8,6 +8,7 @@
 #include <iostream>
 #include <limits> 
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 using namespace N_ProfessorOak;
