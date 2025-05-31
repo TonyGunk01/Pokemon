@@ -3,7 +3,7 @@
 #include "../../include/Pokemon/PokemonType.hpp"
 #include "../../include/Utility/Utility.hpp"
 #include "../../include/Battle/WildEncounterManager.hpp"
-#include "../../include/Battle/BattleManager.hpp" // Added this include
+#include "../../include/Battle/BattleManager.hpp" 
 
 #include <iostream>
 
@@ -20,13 +20,12 @@ using namespace N_WildEncounterManager;
 Game::Game() : forestGrass(
     "Forest",
     {
-        Pokemon("Pidgey", PokemonType::Normal, 40, 10),
-        Pokemon("Caterpie", PokemonType::Psychic, 35, 5),
-        Pokemon("Zubat", PokemonType::Poison, 30, 8)
+        new Pokemon("Pidgey", PokemonType::Normal, 40, 10),
+        new Pokemon("Caterpie", PokemonType::Psychic, 35, 5),
+        new Pokemon("Zubat", PokemonType::Poison, 30, 8)
     },
     70
 )
-
 {
 }
 
@@ -40,7 +39,7 @@ void Game::gameLoop(Player& player)
     {
         Utility::clearConsole();
 
-        cout << "\nWhat would you like to do next, " << player.name << "?\n";
+        cout << "\nWhat would you like to do next, " << player.getName() << "?\n";
         cout << "1. Battle Wild Pokemon\n";
         cout << "2. Visit PokeCenter\n";
         cout << "3. Challenge Gyms\n";
@@ -57,9 +56,12 @@ void Game::gameLoop(Player& player)
             case 1: 
             {
                 WildEncounterManager encounterManager;
-                Pokemon encounteredPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
-
-                battleManager.startBattle(player, encounteredPokemon);
+                Pokemon* encounteredPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
+                
+                if (encounteredPokemon) 
+                {
+                    battleManager.startBattle(player, *encounteredPokemon);
+                }
                 break;
             }
 
@@ -67,7 +69,7 @@ void Game::gameLoop(Player& player)
             {
                 cout << "\nYou head to the PokeCenter\n";
                 player.chosenPokemon->heal();
-				cout << player.chosenPokemon->name << "'s health is fully restored!\n";
+				cout << player.chosenPokemon->getName() << "'s health is fully restored!\n";
                 break;
             }
 
@@ -99,5 +101,5 @@ void Game::gameLoop(Player& player)
         Utility::waitForEnter();
     }
 
-    cout << "Goodbye, " << player.name << "! Thanks for playing!\n";
+    cout << "Goodbye, " << player.getName() << "! Thanks for playing!\n";
 }

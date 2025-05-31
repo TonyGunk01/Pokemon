@@ -43,7 +43,7 @@ void N_Player::Player::choosePokemon(int choice)
             break;
     }
 
-    cout << "Player " << name << " chose " << chosenPokemon->name << "!\n";
+    cout << "Player " << name << " chose " << chosenPokemon->getName() << "!\n";
     N_Utility::Utility::waitForEnter();
 }
 

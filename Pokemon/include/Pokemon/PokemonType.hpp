@@ -10,6 +10,7 @@ namespace N_PokemonType
         Electric,
         Psychic,
         Poison,
+        Bug,
         Normal
     };
 }

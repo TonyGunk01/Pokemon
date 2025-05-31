@@ -31,5 +31,7 @@ namespace N_Pokemon
             bool isFainted() const;
 
             void heal();
+
+            const string& getName() const;
     };
 }
