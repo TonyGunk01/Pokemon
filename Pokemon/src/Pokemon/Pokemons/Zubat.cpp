@@ -16,5 +16,10 @@ namespace N_Pokemon
             target.takeDamage(20);
         }
 
+        void Zubat::attack(Pokemon& target) 
+        { 
+            supersonic(target); 
+        }
+
     }
 }

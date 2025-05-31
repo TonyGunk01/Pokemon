@@ -27,13 +27,6 @@ Pokemon::~Pokemon()
 
 }  
 
-void Pokemon::attack(Pokemon& target)  
-{  
-    int damage = 10;  
-    cout << name << " attacks " << target.name << " for " << damage << " damage!\n";  
-    target.takeDamage(damage);  
-}  
-
 void Pokemon::takeDamage(int damage)  
 {  
     health -= damage;  
