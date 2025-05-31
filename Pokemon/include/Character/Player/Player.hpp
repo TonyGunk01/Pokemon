@@ -20,5 +20,10 @@ namespace N_Player
 			~Player();
 
 			void choosePokemon(int choice);
+
+			const string& getName() const 
+			{ 
+				return name; 
+			}
 	};
 }

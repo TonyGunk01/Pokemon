@@ -3,17 +3,20 @@
 #include <iostream>
 #include "Player/Player.hpp" 
 
+using namespace std;
+using namespace N_Player;
+
 namespace N_ProfessorOak
 {
     class ProfessorOak
     {
-    private:
-        std::string name;
+        private:
+            string name;
 
-    public:
-        ProfessorOak(std::string p_name);
-        void greetPlayer(N_Player::Player& player); 
-        void offerPokemonChoices(N_Player::Player& player); 
-        void explainMainQuest(N_Player::Player& player); 
+        public:
+            ProfessorOak(string p_name);
+            void greetPlayer(Player& player); 
+            void offerPokemonChoices(Player& player); 
+            void explainMainQuest(Player& player); 
     };
 }

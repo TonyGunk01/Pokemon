@@ -13,7 +13,7 @@ void N_BattleManager::BattleManager::startBattle(N_Player::Player& player, N_Pok
 	battleState.playerTurn = true;  
 	battleState.battleOngoing = true;
 
-	cout << "A wild " << wildPokemon.name << " appeared!" << endl;
+	cout << "A wild " << wildPokemon.getName() << " appeared!" << endl;
 	battle();
 }
 
@@ -61,11 +61,11 @@ void N_BattleManager::BattleManager::handleBattleOutcome(N_Player::Player& playe
 {  
     if (playerWon)  
     {  
-        cout << player.chosenPokemon->name << " is victorious! Keep an eye on your Pokemon's health.\n";  
+        cout << player.chosenPokemon->getName() << " is victorious! Keep an eye on your Pokemon's health.\n";  
     }  
     else  
     {  
-        cout << "Oh no! " << player.chosenPokemon->name << " fainted! You need to visit the PokeCenter.\n";  
+        cout << "Oh no! " << player.chosenPokemon->getName() << " fainted! You need to visit the PokeCenter.\n";  
         N_Utility::Utility::waitForEnter();  
         cout << "Game Over!\n";  
     }  
@@ -77,11 +77,11 @@ namespace N_BattleManager
     {  
         if (battleState.playerPokemon->isFainted())  
         {  
-            cout << battleState.playerPokemon->name << " has fainted! You lose the battle.\n";  
+            cout << battleState.playerPokemon->getName() << " has fainted! You lose the battle.\n";  
         }  
         else  
         {  
-            cout << "You defeated the wild " << battleState.wildPokemon->name << "!\n";  
+            cout << "You defeated the wild " << battleState.wildPokemon->getName() << "!\n";  
         }  
     }
 

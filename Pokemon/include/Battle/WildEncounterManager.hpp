@@ -7,8 +7,8 @@ namespace N_WildEncounterManager
 	using WildPokemon = N_Pokemon::Pokemon; 
 	class WildEncounterManager
 	{
-		public:
-			WildEncounterManager();
-			WildPokemon getRandomPokemonFromGrass(const N_grass::Grass& grass); 
+	public:
+		WildEncounterManager();
+		WildPokemon* getRandomPokemonFromGrass(const N_grass::Grass& grass);
 	};
 }
