@@ -1,24 +1,24 @@
-#include "../../../include/Pokemon/Pokemons/Caterpie.hpp"
-#include "../../../include/Pokemon/PokemonType.hpp"
 #include <iostream>
 
-namespace N_Pokemon 
+#include "../../../include/Pokemon/Pokemons/Caterpie.hpp"
+#include "../../../include/Pokemon/PokemonType.hpp"
+
+using namespace N_Pokemon;
+
+namespace N_Pokemon
 {
-    namespace N_Pokemons 
-    {
-        using namespace std;
+	namespace N_Pokemons
+	{
+		Caterpie::Caterpie() : Pokemon("Caterpie", PokemonType::Electric, 100, 25) {}
 
-        Caterpie::Caterpie() : Pokemon("Caterpie", N_PokemonType::PokemonType::Bug, 100, 10) {}
+		void Caterpie::bugBite(Pokemon& target)
+		{
+			cout << name << " uses Bug Bite on" << target.getName() << endl;
+			target.takeDamage(20);
+		}
 
-        void Caterpie::bugBite(Pokemon& target) 
-        {
-            cout << name << " uses Bug Bite on " << target.getName() << "!\n";
-            target.takeDamage(20);
-        }
-
-        void Caterpie::attack(Pokemon& target) 
-        { 
-            bugBite(target); 
-        }
-    }
+		void Caterpie::attack(Pokemon* target) {
+			bugBite(*target);
+		}
+	}
 }

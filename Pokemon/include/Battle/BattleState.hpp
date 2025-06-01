@@ -1,14 +1,16 @@
 #pragma once
 
-#include "../../include/Pokemon/Pokemon.hpp" 
+#include "../Pokemon/Pokemon.hpp"
 
-namespace N_BattleState
-{ 
-	struct BattleState
+using namespace N_Pokemon;
+
+namespace N_Battle 
+{
+	struct BattaleState
 	{
-		N_Pokemon::Pokemon *playerPokemon; 
-		N_Pokemon::Pokemon *wildPokemon;  
+		Pokemon* playerPokemon;
+		Pokemon* wildPokemon;
 		bool playerTurn;
-		bool battleOngoing;
+		bool battleOnGoing;
 	};
 }

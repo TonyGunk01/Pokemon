@@ -1,35 +1,43 @@
-#include "include/Main/Game.hpp"
-#include "include/Character/Player/Player.hpp"
 #include "include/Pokemon/PokemonChoice.hpp"
 #include "include/Pokemon/PokemonType.hpp"
-#include "include/Character/ProfessorOak.hpp"
 #include "include/Utility/Utility.hpp"
+#include "include/Character/Player/Player.hpp"
+#include "include/Character/ProfessorOak.hpp"
+#include "include/Main/Game.hpp"
 
 #include <iostream>
-#include <limits> 
 #include <string>
+#include <limits>
 
+using namespace N_Pokemon;
+using namespace N_Player;
+using namespace N_Utility;
+using namespace N_Character;
+using namespace N_Main;
 using namespace std;
-using namespace N_ProfessorOak;
-using namespace N_Game;
-using namespace N_Player; 
 
-int main()  
-{  
-    ProfessorOak* professor = new ProfessorOak("Professor Oak");  
+int main()
+{
+    ProfessorOak* professor = new ProfessorOak("Professor Oak");
     Player* player = new Player();
 
-    professor -> greetPlayer(*player);  
-    professor -> offerPokemonChoices(*player);  
+    professor->greetPlayer(*player);
+    professor->offerPokemonChoices(*player);
 
-    professor -> explainMainQuest(*player);  
+    professor->explainMainQuest(*player);
 
-    Game* game = new Game();  
-    game -> gameLoop(*player);  
+    Game* game = new Game();
+    game->gameLoop(player);
 
-    delete(professor);
-    delete(player);
-    delete(game);
+    system("pause");
 
-    return 0;  
+    delete professor;
+    delete player;
+    delete game;
+
+    professor = nullptr;
+    player = nullptr;
+    game = nullptr;
+
+    return 0;
 }

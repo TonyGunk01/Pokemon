@@ -1,20 +1,25 @@
-#include "../../include/Pokemon/Pokemon.hpp"
-#include "../../include/Character/Player/Player.hpp" 
-#include "../../include/Battle/BattleState.hpp"
+#pragma once
 
-namespace N_BattleManager
-{ 
-    class BattleManager 
-    {
-        public:
-            void startBattle(N_Player::Player& player, N_Pokemon::Pokemon& wildPokemon); 
+#include "BattleState.hpp"
+#include "../Character/Player/Player.hpp"
 
-        private:
-            N_BattleState::BattleState battleState;
-            void battle();
-            void battle(N_Pokemon::Pokemon& playerPokemon, N_Pokemon::Pokemon& wildPokemon);
-            void handleBattleOutcome(N_Player::Player& player, bool playerWon); 
-            void handleBattleOutcome(); 
-            void updateBattleState();
-    };
+using namespace N_Player;
+
+namespace N_Battle
+{
+	class BattleManager
+	{
+	public:
+		BattleManager() = default;
+
+		void startBattle(Player& player, Pokemon& wildPokemon);
+		void updateBattleState();
+
+	private:
+		BattaleState battleState;
+
+		void battle();
+		void handleBattleOutCome();
+
+	};
 }

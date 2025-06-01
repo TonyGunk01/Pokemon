@@ -1,24 +1,25 @@
-#include "../../../include/Pokemon/Pokemons/Pikachu.hpp"
-#include "../../../include/Pokemon/PokemonType.hpp"
 #include <iostream>
 
-namespace N_Pokemon 
+#include "../../../include/Pokemon/Pokemons/Pikachu.hpp"
+#include "../../../include/Pokemon/PokemonType.hpp"
+
+using namespace N_Pokemon;
+
+namespace N_Pokemon
 {
-    namespace N_Pokemons 
-    {
-        using namespace std;
+	namespace N_Pokemons
+	{
+		Pikachu::Pikachu() : Pokemon("Pikachu", PokemonType::Electric, 100, 15) {}
 
-        Pikachu::Pikachu() : Pokemon("Pikachu", N_PokemonType::PokemonType::Electric, 100, 20) {}
+		void Pikachu::thunderShock(Pokemon& target)
+		{
+			cout << name << " uses Thunder Shock on" << target.getName() << endl;
+			target.takeDamage(20);
+		}
 
-        void Pikachu::attack(Pokemon& target) 
-        { 
-            thunderShock(target); 
-        }
-
-        void Pikachu::thunderShock(Pokemon& target) 
-        {
-            cout << name << " uses Thunder Shock on " << target.getName() << "!\n";
-            target.takeDamage(20);
-        }
-    }
+		void Pikachu::attack(Pokemon* target) 
+		{
+			thunderShock(*target);
+		}
+	}
 }

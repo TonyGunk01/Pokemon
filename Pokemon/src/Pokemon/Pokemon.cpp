@@ -1,52 +1,123 @@
-#include "../../include/Pokemon/Pokemon.hpp"  
+#include <iostream>
+#include <string>
+
+#include "../../include/Pokemon/Pokemon.hpp"
 #include "../../include/Pokemon/PokemonType.hpp"
 
-#include <iostream>
-
-using namespace std;
 using namespace N_Pokemon;
-using namespace N_PokemonType;
+using namespace std;
 
-Pokemon::Pokemon() : name(""), type(N_PokemonType::PokemonType::Normal), health(0), maxHealth(0), attackPower(0)  
-{  
+namespace N_Pokemon
+{
+    void Pokemon::setName(string n) 
+    { 
+        name = n; 
+    }
 
-}  
+    string Pokemon::getName() 
+    { 
+        return name; 
+    }
 
-Pokemon::Pokemon(const Pokemon& p_other): name(p_other.name), type(p_other.type), health(p_other.health), maxHealth(p_other.maxHealth), attackPower(p_other.attackPower)  
-{  
+    PokemonType Pokemon::setType(PokemonType t) 
+    { 
+        type = t; 
+        return type; 
+    }
 
-}  
+    PokemonType Pokemon::getType() 
+    { 
+        return type; 
+    }
 
-Pokemon::Pokemon(const string& p_name, N_PokemonType::PokemonType p_type, int p_maxHealth, int p_attackPower): name(p_name), type(p_type), maxHealth(p_maxHealth), health(p_maxHealth), attackPower(p_attackPower)  
-{  
+    void Pokemon::setHealth(int h) 
+    { 
+        health = h; 
+    }
 
-}  
+    int Pokemon::getHealth() 
+    { 
+        return health; 
+    }
 
-Pokemon::~Pokemon()  
-{  
+    void Pokemon::setMaxHealth(int mh) 
+    { 
+        maxHealth= mh; 
+    }
 
-}  
+    int Pokemon::getMaxHealth() 
+    { 
+        return maxHealth; 
+    }
 
-void Pokemon::takeDamage(int damage)  
-{  
-    health -= damage;  
-    if (health < 0) {  
-        health = 0;  
-    }  
-    cout << name << " takes " << damage << " damage! Health is now " << health << ".\n";  
-}  
+    void Pokemon::setAttackPower(int ap) 
+    { 
+        attackPower = ap; 
+    }
 
-bool Pokemon::isFainted() const  
-{  
-    return health <= 0;  
-}  
+    int Pokemon::getAttackPower() 
+    { 
+        return attackPower; 
+    }
+    
+    Pokemon::Pokemon()
+    {
+        name = "Unknown";
+        type = PokemonType::Normal;
+        health = 50;
+        maxHealth = 100;
+        attackPower = 10;
+    }
 
-void Pokemon::heal()  
-{  
-    health = maxHealth;
-}  
+    Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health)
+    {
+        name = p_name;
+        type = p_type;
+        health = p_health;
+        maxHealth = p_health;
+        attackPower = 10;
+    }
 
-const string& Pokemon::getName() const  
-{  
-    return name;  
+    Pokemon::Pokemon(string p_name, PokemonType p_type, int p_maxHealth, int p_attackPower)
+    {
+        name = p_name;
+        type = p_type;
+        health = p_maxHealth;
+        maxHealth = p_maxHealth;
+        attackPower = p_attackPower;
+    }
+
+    Pokemon::Pokemon(const Pokemon& other)
+    {
+        name = other.name;
+        type = other.type;
+        health = other.health;
+        maxHealth = other.maxHealth;
+        attackPower = other.attackPower;
+    }
+
+    Pokemon::~Pokemon()
+    {
+        
+    }
+
+    void Pokemon::takeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health < 0)
+        {
+            health = 0;
+        }
+    }
+
+    bool Pokemon::isFainted() const
+    {
+        return (health <= 0);
+    }
+
+    void Pokemon::heal()
+    {
+        health = maxHealth;
+    }
 }

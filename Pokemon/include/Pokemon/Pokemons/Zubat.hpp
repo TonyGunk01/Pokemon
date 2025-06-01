@@ -2,18 +2,20 @@
 
 #include "../Pokemon.hpp"
 
-namespace N_Pokemon 
-{
-    namespace N_Pokemons 
-    {
-        class Zubat : public Pokemon 
-        {
-            private:
-                void supersonic(Pokemon& target);
+using namespace N_Pokemon;
 
-            public:
-                Zubat();
-                void attack(Pokemon& target) override;
-        };
-    }
+namespace N_Pokemon
+{
+	namespace N_Pokemons
+	{
+		class Zubat :public Pokemon
+		{
+			private:
+				void supersonic(Pokemon& target);
+
+			public:
+				Zubat();
+				void attack(Pokemon* target)override;
+		};
+	}
 }

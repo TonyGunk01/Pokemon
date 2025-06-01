@@ -1,25 +1,26 @@
+#include <iostream>
+
 #include "../../../include/Pokemon/Pokemons/Charmander.hpp"
 #include "../../../include/Pokemon/PokemonType.hpp"
-#include <iostream>
+
+using namespace N_Pokemon;
+using namespace std;
 
 namespace N_Pokemon
 {
-    namespace N_Pokemons
-    {
-        using namespace std;
+	namespace N_Pokemons
+	{
+		Charmander::Charmander() : Pokemon("Charmander", PokemonType::Fire, 100, 35) {}
 
-        Charmander::Charmander() : Pokemon("Charmander", N_PokemonType::PokemonType::Fire, 100, 35) {}
+		void Charmander::flameBrust(Pokemon& target)
+		{
+			cout << name << " uses Flame Thrower on" << target.getName() << endl;
+			target.takeDamage(20);
+		}
 
-        void Charmander::flameBurst(Pokemon& target)
-        {
-            cout << name << " uses flame burst on " << target.getName() << "!\n";
-            target.takeDamage(20);
-        }
-
-        void Charmander::attack(Pokemon& target)
-        {
-            flameBurst(target);
-        }
-
-    }
+		void Charmander::attack(Pokemon* target) 
+		{
+			flameBrust(*target);
+		}
+	}
 }
