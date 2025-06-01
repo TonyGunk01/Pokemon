@@ -1,20 +1,35 @@
-#include "../../../include/Pokemon/Pokemons/Zubat.hpp"
-#include "../../../include/Pokemon/PokemonType.hpp"
 #include <iostream>
 
-namespace N_Pokemon 
+#include "../../../include/Pokemon/Pokemons/Zubat.hpp"
+#include "../../../include/Pokemon/PokemonType.hpp"
+#include "../../../include/Utility/Utility.hpp"
+
+using namespace N_Pokemon;
+
+namespace N_Pokemon
 {
-    namespace N_Pokemons 
-    {
-        using namespace std;
+	namespace N_Pokemons
+	{
+		Zubat::Zubat() :
+			Pokemon("Zubat", PokemonType::Poison, 100, {
+					Move("Super Sonic", 20),
+					Move("Tackle", 10)
+				}) {
+		}
 
-        Zubat::Zubat() : Pokemon("Zubat", N_PokemonType::PokemonType::Poison, 100, 20) {}
-
-        void Zubat::supersonic(Pokemon& target) 
+        void Zubat::attack(Move selectedMove, Pokemon* target) 
         {
-            cout << name << " uses Supersonic on " << target.getName() << "!\n";
-            target.takeDamage(20);
-        }
+            Pokemon::attack(selectedMove, target);
 
-    }
+            if (selectedMove.name == "Leech Life")
+            {
+                this->health += selectedMove.power * 0.5;
+
+                if (this->health > this->maxHealth)
+                    this->health = this->maxHealth;
+
+                cout << "... and regained health!\n";
+            }
+        }
+	}
 }

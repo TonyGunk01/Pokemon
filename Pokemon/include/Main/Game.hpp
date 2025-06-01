@@ -1,17 +1,28 @@
 #pragma once
 
-#include "../../include/Pokemon/Grass.hpp"
-#include "../../include/Character/Player/Player.hpp" 
+#include "../Pokemon/Grass.hpp"
+#include "../Character/Player/Player.hpp"
 
-namespace N_Game
+#include <vector>
+
+using namespace N_Player;
+using namespace N_Pokemon;
+
+namespace N_Main 
 {
-    class Game
-    {
-        private:
-            N_grass::Grass forestGrass; 
+	class Game
+	{
+		bool keepPlaying = true;
+		int choice;
 
-        public:
-            Game();
-            void gameLoop(N_Player::Player& player); 
-    };
+		private:
+			Grass forestGrass;
+			Pokemon* wildPokemon;
+
+		public:
+			Game();
+			~Game();
+			void gameLoop(Player* player);
+			void visitPokeCenter(Player* player);
+	};
 }

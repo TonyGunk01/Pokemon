@@ -1,19 +1,36 @@
-#include "../../../include/Pokemon/Pokemons/Caterpie.hpp"
-#include "../../../include/Pokemon/PokemonType.hpp"
 #include <iostream>
 
-namespace N_Pokemon 
+#include "../../../include/Pokemon/Pokemons/Caterpie.hpp"
+#include "../../../include/Pokemon/PokemonType.hpp"
+#include "../../../include/Utility/Utility.hpp"
+
+using namespace N_Pokemon;
+
+namespace N_Pokemon
 {
-    namespace N_Pokemons 
-    {
-        using namespace std;
+	namespace N_Pokemons
+	{
+		Caterpie::Caterpie() :
+			Pokemon("Caterpie", PokemonType::Bug, 100, {
+					Move("Bug Bite", 25),
+					Move("Tackle", 10)
+				}) {
+		}
 
-        Caterpie::Caterpie() : Pokemon("Caterpie", N_PokemonType::PokemonType::Bug, 100, 10) {}
-
-        void Caterpie::bugBite(Pokemon& target) 
+        void Caterpie::attack(Move selectedMove, Pokemon* target)
         {
-            cout << name << " uses Bug Bite on " << target.getName() << "!\n";
-            target.takeDamage(20);
+            int selectedMoveIndex = selectMove();
+            selectedMove = moves[selectedMoveIndex]; 
+
+            Pokemon::attack(selectedMove, target);
+            selectAndUseMove(target);
+
+            if (selectedMove.name == "Sticky Web")
+            {
+                int reducedDamage = 5;
+
+                target->reduceAttackPower(reducedDamage);
+            }
         }
-    }
+	}
 }

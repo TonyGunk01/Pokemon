@@ -1,29 +1,21 @@
 #pragma once
 
 #include <string>
-#include "../../Pokemon/Pokemon.hpp" 
 
-using namespace std;
+#include "../../Pokemon/Pokemon.hpp"
 
-namespace N_Player
-{ 
-	class Player
-	{
-		public:
-			string name;
-			N_Pokemon::Pokemon* chosenPokemon; 
+using namespace N_Pokemon;
 
-			Player();
+namespace N_Player 
+{
+    class Player
+    {
+        public:
+            string name;
+            Pokemon* chosenPokemon;
 
-			Player(string p_name, N_Pokemon::Pokemon* p_chosenPokemon); 
-
-			~Player();
-
-			void choosePokemon(int choice);
-
-			const string& getName() const 
-			{ 
-				return name; 
-			}
-	};
+            Player();
+            Player(string p_name);
+            void choosePokemon(int choice);
+    };
 }

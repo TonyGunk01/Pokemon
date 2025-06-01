@@ -1,20 +1,32 @@
+#include <iostream>
+
 #include "../../../include/Pokemon/Pokemons/Charmander.hpp"
 #include "../../../include/Pokemon/PokemonType.hpp"
-#include <iostream>
+#include "../../../include/Utility/Utility.hpp"
+
+using namespace N_Pokemon;
 
 namespace N_Pokemon
 {
     namespace N_Pokemons
     {
-        using namespace std;
-
-        Charmander::Charmander() : Pokemon("Charmander", N_PokemonType::PokemonType::Fire, 100, 35) {}
-
-        void Charmander::flameBurst(Pokemon& target)
-        {
-            cout << name << " uses flame burst on " << target.getName() << "!\n";
-            target.takeDamage(20);
+        Charmander::Charmander() :
+            Pokemon("Charmander", PokemonType::Fire, 100, {
+                    Move("Flame Burst", 35),
+                    Move("Tackle", 10)
+                }) {
         }
 
+        void Charmander::attack(Move selectedMove, Pokemon* target)
+        {
+            Pokemon::attack(selectedMove, target);
+
+            if (selectedMove.name == "Blazing Charge")
+            {
+                this->takeDamage(10);
+                cout << name << " takes 10 recoil damage from the Blazing Charge!\n";
+                N_Utility::Utility::waitForEnter();
+            }
+        }
     }
 }

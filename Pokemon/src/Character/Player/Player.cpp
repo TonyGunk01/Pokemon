@@ -1,53 +1,64 @@
 #include "../../../include/Character/Player/Player.hpp"
 #include "../../../include/Pokemon/PokemonChoice.hpp"
 #include "../../../include/Pokemon/PokemonType.hpp"
-#include "../../../include/Pokemon/Pokemon.hpp"
 #include "../../../include/Utility/Utility.hpp"
+#include "../../../include/Pokemon/Pokemons/Bulbasaur.hpp"
+#include "../../../include/Pokemon/Pokemons/Charmander.hpp"
+#include "../../../include/Pokemon/Pokemons/Squirtle.hpp"
+#include "../../../include/Pokemon/Pokemons/Pikachu.hpp"
 
 #include <iostream>
 
+using namespace N_Pokemons;
+using namespace N_Utility;
+using namespace N_Pokemon;
+using namespace N_Player;
 using namespace std;
 
-N_Player::Player::Player()
+namespace N_Player 
 {
-    name = "Trainer";
-    chosenPokemon = new N_Pokemon::Pokemon();
-}
-
-N_Player::Player::Player(string p_name, N_Pokemon::Pokemon* p_chosenPokemon)
-{
-    name = p_name;
-    chosenPokemon = p_chosenPokemon;
-}
-
-void N_Player::Player::choosePokemon(int choice)
-{
-    delete chosenPokemon;
-
-    switch ((PokemonChoice)choice)
+    Player::Player()
     {
-        case PokemonChoice::CHARMANDER:
-            chosenPokemon = new N_Pokemon::Pokemon("Charmander", N_PokemonType::PokemonType::Fire, 100, 50);
-            break;
-
-        case PokemonChoice::BULBASAUR:
-            chosenPokemon = new N_Pokemon::Pokemon("Bulbasaur", N_PokemonType::PokemonType::Grass, 100, 45);
-            break;
-
-        case PokemonChoice::SQUIRTLE:
-            chosenPokemon = new N_Pokemon::Pokemon("Squirtle", N_PokemonType::PokemonType::Water, 100, 40);
-            break;
-
-        default:
-            chosenPokemon = new N_Pokemon::Pokemon("Pikachu", N_PokemonType::PokemonType::Electric, 100, 55);
-            break;
+        name = "Trainer";
     }
 
-    cout << "Player " << name << " chose " << chosenPokemon->getName() << "!\n";
-    N_Utility::Utility::waitForEnter();
-}
+    Player::Player(string p_name) 
+    {
+        name = p_name;
+    }
 
-N_Player::Player::~Player()
-{
-    delete chosenPokemon;
+    void Player::choosePokemon(int choice) 
+    {
+        switch ((PokemonChoice)choice)
+        {
+            case PokemonChoice::Bulbasaur:
+                chosenPokemon = new Bulbasaur();
+                cout << "\nNice choice! Bulbasaur is a grass type Pokemon and is super mighty!" << endl;
+                Utility::waitForEnter();
+                break;
+
+            case PokemonChoice::Charmander:
+                chosenPokemon = new Charmander();
+                cout << "\nAh, great selection! Charmander is a fire type Pokemon and can be quite formidable!" << endl;
+                Utility::waitForEnter();
+                break;
+
+            case PokemonChoice::Squirtle:
+                chosenPokemon = new Squirtle();
+                cout << "\nGood decision! Squirtle is a water type Pokemon with a tough fight in him!" << endl;
+                Utility::waitForEnter();
+                break;
+
+            default:
+                chosenPokemon = new Pikachu();
+				cout << "\nHmm, it looks like you didn't choose a Pokemon. Pikachu, the powerful electric type Pokemon will be your companion!" << endl;
+                Utility::waitForEnter();
+                break;
+        }
+
+		cout << "\nYou have chosen " << chosenPokemon->getName() << " as your first Pokemon!" << endl;
+
+        Utility::waitForEnter();
+        Utility::clearConsole();
+    }
 }

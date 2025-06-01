@@ -1,20 +1,39 @@
-#include "../../../include/Pokemon/Pokemons/Bulbasaur.hpp"
-#include "../../../include/Pokemon/PokemonType.hpp"
-#include <iostream>
+#include "../../../include/Pokemon/Pokemons/Bulbasaur.hpp"  
+#include "../../../include/Pokemon/PokemonType.hpp"  
+#include "../../../include/Utility/Utility.hpp"  
 
-namespace N_Pokemon
-{
-    namespace N_Pokemons
-    {
-        using namespace std;
+#include <iostream>  
 
-        Bulbasaur::Bulbasaur() : Pokemon("Bulbasaur", N_PokemonType::PokemonType::Grass, 100, 35) {}
+namespace N_Pokemon  
+{  
+    namespace N_Pokemons  
+    {  
+        using namespace std;  
 
-        void Bulbasaur::vineWhip(Pokemon& target)
-        {
-            cout << name << " uses vine whip on " << target.getName() << "!\n";
-            target.takeDamage(20);
-        }
+        Bulbasaur::Bulbasaur()  
+            :Pokemon("Bulbasaur", PokemonType::Grass, 110, {  
+                    Move("Vine Whip", 25),   
+                    Move("Tackle", 10)  
+        }) {}  
 
-    }
+        void Bulbasaur::attack(Move selectedMove, Pokemon* target)  
+        {  
+            Pokemon::attack(selectedMove, target);  
+            selectAndUseMove(target);  
+
+            if (selectedMove.name == "Vine Whip")  
+            {  
+                int secondHitChance = rand() % 2;  
+
+                if (secondHitChance == 1)  
+                {  
+                    Pokemon::attack(selectedMove, target);  
+                    cout << name << " hits again with a second " << selectedMove.name << "!\n";  
+                } 
+
+                else  
+                    cout << target->getName() << " dodged the second hit!\n";  
+            }  
+        }  
+    }  
 }

@@ -1,27 +1,17 @@
 #pragma once
 
-#include <vector>
 #include <string>
-#include "Pokemon.hpp" 
+#include <vector>
 
-using namespace std;
+#include "../Pokemon/Pokemon.hpp"
 
-namespace N_grass
+namespace N_Pokemon
 {
 	struct Grass
 	{
-		string environmentType;
-		vector<N_Pokemon::Pokemon*> wildPokemonList;
-		int encounterRate;
-
-		Grass(const string& envType, const vector<N_Pokemon::Pokemon*>& wildPokemon, int rate) : environmentType(envType), wildPokemonList(wildPokemon), encounterRate(rate) 
-		{
-		
-		}
-		
-		~Grass() 
-		{
-			for (auto p : wildPokemonList) delete p;
-		}
+		public:
+			string environmentType;
+			vector<Pokemon*>wildPokemonList;
+			int encounterRate;
 	};
 }
