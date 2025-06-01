@@ -13,10 +13,15 @@ namespace N_Battle
 		BattleManager() = default;
 
 		void startBattle(Player& player, Pokemon& wildPokemon);
+
+        static void stopBattle();  
+        
+		void stopBattleInstance();
+
 		void updateBattleState();
 
 	private:
-		BattaleState battleState;
+		BattleState battleState;
 
 		void battle();
 		void handleBattleOutCome();

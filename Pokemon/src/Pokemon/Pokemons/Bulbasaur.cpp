@@ -1,36 +1,39 @@
-#include "../../../include/Pokemon/Pokemons/Bulbasaur.hpp"
-#include "../../../include/Pokemon/PokemonType.hpp"
-#include "../../../include/Utility/Utility.hpp"
+#include "../../../include/Pokemon/Pokemons/Bulbasaur.hpp"  
+#include "../../../include/Pokemon/PokemonType.hpp"  
+#include "../../../include/Utility/Utility.hpp"  
 
-#include <iostream>
+#include <iostream>  
 
-namespace N_Pokemon
-{
-    namespace N_Pokemons
-    {
-        using namespace std;
+namespace N_Pokemon  
+{  
+    namespace N_Pokemons  
+    {  
+        using namespace std;  
 
-        Bulbasaur::Bulbasaur() : Pokemon("Bulbasaur", PokemonType::Grass, 100, 35) {}
+        Bulbasaur::Bulbasaur()  
+            :Pokemon("Bulbasaur", PokemonType::Grass, 110, {  
+                    Move("Vine Whip", 25),   
+                    Move("Tackle", 10)  
+        }) {}  
 
-        void Bulbasaur::attack(Pokemon* target)
-        {
-            vineWhip(*target);
-        }
+        void Bulbasaur::attack(Move selectedMove, Pokemon* target)  
+        {  
+            Pokemon::attack(selectedMove, target);  
+            selectAndUseMove(target);  
 
-        void Bulbasaur::vineWhip(Pokemon& target)
-        {
-            cout << name << " used VINE WHIP!\n";
-            N_Utility::Utility::waitForEnter();
+            if (selectedMove.name == "Vine Whip")  
+            {  
+                int secondHitChance = rand() % 2;  
 
-            target.takeDamage(attackPower);
+                if (secondHitChance == 1)  
+                {  
+                    Pokemon::attack(selectedMove, target);  
+                    cout << name << " hits again with a second " << selectedMove.name << "!\n";  
+                } 
 
-            if (target.isFainted())
-                cout << target.getName() << " fainted!\n";
-
-            else
-                cout << target.getName() << " has " << target.getHealth() << " HP left.\n";
-
-            N_Utility::Utility::waitForEnter();
-        }
-    }
+                else  
+                    cout << target->getName() << " dodged the second hit!\n";  
+            }  
+        }  
+    }  
 }

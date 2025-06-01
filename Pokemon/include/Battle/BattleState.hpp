@@ -6,7 +6,7 @@ using namespace N_Pokemon;
 
 namespace N_Battle 
 {
-	struct BattaleState
+	struct BattleState
 	{
 		Pokemon* playerPokemon;
 		Pokemon* wildPokemon;

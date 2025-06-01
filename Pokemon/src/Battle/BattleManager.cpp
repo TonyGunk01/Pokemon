@@ -27,16 +27,15 @@ namespace N_Battle
 		{
 			if (battleState.playerTurn)
 			{
-				battleState.playerPokemon->attack(battleState.wildPokemon);
 				battleState.playerTurn = false;
+				battleState.playerPokemon -> selectAndUseMove(battleState.wildPokemon);
 				updateBattleState();
-
 			}
 
 			else
 			{
-				battleState.wildPokemon->attack(battleState.playerPokemon);
 				battleState.playerTurn = true;
+				battleState.wildPokemon -> selectAndUseMove(battleState.playerPokemon);
 				updateBattleState();
 			}
 		}
@@ -50,16 +49,18 @@ namespace N_Battle
 		{
 			cout << "Oh no! " << battleState.playerPokemon->getName() << " fainted! You need to visit the PokeCenter." << endl;
 			cout << "Game Over.\n";
+			Utility::waitForEnter();
 		}
 
 		if (battleState.wildPokemon->isFainted())
 		{
 			cout << "Victory! You defeated the wild " << battleState.wildPokemon->getName() << endl;
+			Utility::waitForEnter();
 		}
 
 		Utility::waitForEnter();
-
 	}
+
 	void BattleManager::updateBattleState()
 	{
 		if (battleState.playerPokemon->isFainted()) 
@@ -71,5 +72,15 @@ namespace N_Battle
 		{
 			battleState.battleOnGoing = false;
 		}
+	}
+
+	void BattleManager::stopBattle()
+	{
+		cout << "The battle has been stopped!" << endl;
+	}
+
+	void BattleManager::stopBattleInstance()
+	{
+		battleState.battleOnGoing = false;
 	}
 }

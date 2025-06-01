@@ -10,26 +10,27 @@ namespace N_Pokemon
 {
 	namespace N_Pokemons
 	{
-		Caterpie::Caterpie() : Pokemon("Caterpie", PokemonType::Electric, 100, 25) {}
-
-		void Caterpie::bugBite(Pokemon& target)
-		{
-			cout << name << " used BUG BITE!\n";
-
-			target.takeDamage(attackPower);
-
-			if (target.isFainted())
-				cout << target.getName() << " fainted!\n";
-
-			else
-				cout << target.getName() << " has " << target.getHealth() << " HP left.\n";
-
-			N_Utility::Utility::waitForEnter();
+		Caterpie::Caterpie() :
+			Pokemon("Caterpie", PokemonType::Bug, 100, {
+					Move("Bug Bite", 25),
+					Move("Tackle", 10)
+				}) {
 		}
 
-		void Caterpie::attack(Pokemon* target) 
-		{
-			bugBite(*target);
-		}
+        void Caterpie::attack(Move selectedMove, Pokemon* target)
+        {
+            int selectedMoveIndex = selectMove();
+            selectedMove = moves[selectedMoveIndex]; 
+
+            Pokemon::attack(selectedMove, target);
+            selectAndUseMove(target);
+
+            if (selectedMove.name == "Sticky Web")
+            {
+                int reducedDamage = 5;
+
+                target->reduceAttackPower(reducedDamage);
+            }
+        }
 	}
 }
