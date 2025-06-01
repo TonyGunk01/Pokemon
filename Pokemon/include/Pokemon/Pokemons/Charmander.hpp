@@ -9,7 +9,7 @@ namespace N_Pokemon
 		class Charmander :public Pokemon
 		{
 			private:
-				void flameBrust(Pokemon& target);
+				void flameBurst(Pokemon& target);
 
 			public:
 				Charmander();

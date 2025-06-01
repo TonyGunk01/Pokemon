@@ -18,7 +18,6 @@ namespace N_Utility
 
     void Utility::waitForEnter()
     {
-        cout << "Press Enter to continue..." << endl;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 

@@ -2,9 +2,9 @@
 
 #include "../../../include/Pokemon/Pokemons/Charmander.hpp"
 #include "../../../include/Pokemon/PokemonType.hpp"
+#include "../../../include/Utility/Utility.hpp"
 
 using namespace N_Pokemon;
-using namespace std;
 
 namespace N_Pokemon
 {
@@ -12,15 +12,25 @@ namespace N_Pokemon
 	{
 		Charmander::Charmander() : Pokemon("Charmander", PokemonType::Fire, 100, 35) {}
 
-		void Charmander::flameBrust(Pokemon& target)
+		void Charmander::flameBurst(Pokemon& target)
 		{
-			cout << name << " uses Flame Thrower on" << target.getName() << endl;
-			target.takeDamage(20);
+			cout << name << " used FLAME THROWER!\n";
+			N_Utility::Utility::waitForEnter();
+
+			target.takeDamage(attackPower); 
+
+			if (target.isFainted()) 
+				cout << target.getName() << " fainted!\n"; 
+
+			else
+				cout << target.getName() << " has " << target.getHealth() << " HP left.\n"; 
+
+			N_Utility::Utility::waitForEnter();
 		}
 
 		void Charmander::attack(Pokemon* target) 
 		{
-			flameBrust(*target);
+			flameBurst(*target);
 		}
 	}
 }

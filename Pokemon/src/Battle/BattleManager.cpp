@@ -28,12 +28,15 @@ namespace N_Battle
 			if (battleState.playerTurn)
 			{
 				battleState.playerPokemon->attack(battleState.wildPokemon);
+				battleState.playerTurn = false;
 				updateBattleState();
+
 			}
 
 			else
 			{
 				battleState.wildPokemon->attack(battleState.playerPokemon);
+				battleState.playerTurn = true;
 				updateBattleState();
 			}
 		}
@@ -51,7 +54,7 @@ namespace N_Battle
 
 		if (battleState.wildPokemon->isFainted())
 		{
-			cout << "You defeated the wild " << battleState.wildPokemon->getName() << endl;
+			cout << "Victory! You defeated the wild " << battleState.wildPokemon->getName() << endl;
 		}
 
 		Utility::waitForEnter();

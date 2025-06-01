@@ -40,5 +40,4 @@ int main()
     game = nullptr;
 
     return 0;
-
 }

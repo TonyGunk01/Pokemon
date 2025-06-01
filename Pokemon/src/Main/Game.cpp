@@ -55,12 +55,12 @@ namespace N_Main
         {
             Utility::clearConsole();
 
-            cout << "What would you like to do next" << player->name << endl;
-            cout << "1.Battle wild pokemon" << endl;
-            cout << "2.Visit PokeCenter" << endl;
-            cout << "3.Challenge Gyms" << endl;
-            cout << "4.Enter Pokemon League" << endl;
-            cout << "5.Quit" << endl;
+            cout << "What would you like to do next, " << player->name << endl;
+            cout << "1. Battle wild Pokemon" << endl;
+            cout << "2. Visit PokeCenter" << endl;
+            cout << "3. Challenge Gyms" << endl;
+            cout << "4. Enter Pokemon League" << endl;
+            cout << "5. Quit" << endl;
 
             cin >> choice;
 

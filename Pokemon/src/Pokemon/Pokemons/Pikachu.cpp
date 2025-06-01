@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include "../../../include/Pokemon/Pokemons/Pikachu.hpp"
 #include "../../../include/Pokemon/PokemonType.hpp"
+#include "../../../include/Utility/Utility.hpp"
+#include "../../../include/Pokemon/Pokemons/Pikachu.hpp"
 
 using namespace N_Pokemon;
 
@@ -13,8 +14,18 @@ namespace N_Pokemon
 
 		void Pikachu::thunderShock(Pokemon& target)
 		{
-			cout << name << " uses Thunder Shock on" << target.getName() << endl;
-			target.takeDamage(20);
+			cout << name << " used THUNDER SHOCK!\n";
+			N_Utility::Utility::waitForEnter();
+
+			target.takeDamage(attackPower);
+
+			if (target.isFainted())
+				cout << target.getName() << " fainted!\n";
+
+			else
+				cout << target.getName() << " has " << target.getHealth() << " HP left.\n";
+
+			N_Utility::Utility::waitForEnter();
 		}
 
 		void Pikachu::attack(Pokemon* target) 

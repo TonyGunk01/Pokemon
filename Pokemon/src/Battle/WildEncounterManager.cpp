@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace N_Battle 
+namespace N_Battle
 {
 	WildEncounterManager::WildEncounterManager()
 	{

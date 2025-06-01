@@ -2,6 +2,7 @@
 
 #include "../../../include/Pokemon/Pokemons/Pidgey.hpp"
 #include "../../../include/Pokemon/PokemonType.hpp"
+#include "../../../include/Utility/Utility.hpp"
 
 using namespace N_Pokemon;
 
@@ -13,10 +14,22 @@ namespace N_Pokemon
 
 		void Pidgey::wingAttack(Pokemon& target)
 		{
-			cout << name << " uses Wing Attack on" << target.getName() << endl;
-			target.takeDamage(20);
+			cout << name << " used WING ATTACK!\n";
+			N_Utility::Utility::waitForEnter();
+
+			target.takeDamage(attackPower);
+
+			if (target.isFainted())
+				cout << target.getName() << " fainted!\n";
+
+			else
+				cout << target.getName() << " has " << target.getHealth() << " HP left.\n";
+
+			N_Utility::Utility::waitForEnter();
 		}
-		void Pidgey::attack(Pokemon* target) {
+
+		void Pidgey::attack(Pokemon* target) 
+		{
 			wingAttack(*target);
 		}
 	}
