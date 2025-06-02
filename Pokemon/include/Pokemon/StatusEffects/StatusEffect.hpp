@@ -2,14 +2,14 @@
 
 #include <string>
 
-#include "../Pokemon/Pokemon.hpp"
+#include "../Pokemon.hpp"
 
 using namespace std;
 using namespace N_Pokemon;
 
 namespace N_Battle
 {
-    class IStatusEffect
+    class StatusEffect
     {
         public:
             virtual void applyEffect(Pokemon* target) = 0;
@@ -20,6 +20,6 @@ namespace N_Battle
 
             virtual void clearEffect(Pokemon* target) = 0;
 
-            virtual ~IStatusEffect() = 0;
+            virtual ~StatusEffect() = 0;
     };
 }
