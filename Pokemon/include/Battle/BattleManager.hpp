@@ -24,7 +24,7 @@ namespace N_Battle
 		BattleState battleState;
 
 		void battle();
-		void handleBattleOutCome();
+		void handleBattleOutcome(); 
 
 	};
 }

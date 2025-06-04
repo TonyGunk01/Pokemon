@@ -6,7 +6,7 @@ namespace N_Pokemon
 {
 	namespace N_StatusEffects
 	{
-		class ParalyzedEffect : public N_Battle::StatusEffect
+		class BurnEffect : public N_Battle::StatusEffect
 		{
 			private:
 				int turnsLeft;

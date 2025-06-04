@@ -1,6 +1,6 @@
 #include "../../../include/Pokemon/StatusEffects/ParalyzedEffect.hpp"
 #include "../../../include/Pokemon/Pokemon.hpp"
-#include "../../../include/Pokemon/StatusEffects/StatusEffect.hpp"
+#include "../../../include/Pokemon/StatusEffects/StatusEffectType.hpp"
 
 #include <iostream>
 
@@ -17,9 +17,9 @@ namespace N_Pokemon
             turnsLeft = rand() % 3 + 1;
         }
 
-        string ParalyzedEffect::getEffectName()
-        {
-            return "Paralyzed";
+        string ParalyzedEffect::getEffectName()  
+        {  
+            return "Paralyzed";  
         }
 
         bool ParalyzedEffect::turnEndEffect(Pokemon* target)
