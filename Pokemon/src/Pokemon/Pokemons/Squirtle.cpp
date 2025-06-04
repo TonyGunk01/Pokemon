@@ -13,6 +13,7 @@ namespace N_Pokemon
         Squirtle::Squirtle() :
             Pokemon("Squirtle", PokemonType::Water, 100, {
                     Move("Vine Whip", 35),
+                    Move("Rapid Spin", 45),
                     Move("Tackle", 10)
                 }) {
         }
@@ -21,7 +22,7 @@ namespace N_Pokemon
         {
             Pokemon::attack(selectedMove, target);
 
-            if (selectedMove.name == "RAPID SPIN")
+            if (selectedMove.name == "Rapid Spin")
             {
                 int hits = (rand() % 4) + 2;
 

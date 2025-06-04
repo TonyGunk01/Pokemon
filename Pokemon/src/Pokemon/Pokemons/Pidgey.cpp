@@ -14,6 +14,7 @@ namespace N_Pokemon
 		Pidgey::Pidgey() :
 			Pokemon("Squirtle", PokemonType::Normal, 100, {
 					Move("Wing Attack", 20),
+                    Move("Gust", 45),
 					Move("Tackle", 10)
 				}) {
 		}

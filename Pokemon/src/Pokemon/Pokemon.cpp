@@ -1,149 +1,133 @@
 #include <iostream>
-#include <string>
 
 #include "../../include/Pokemon/Pokemon.hpp"
 #include "../../include/Pokemon/PokemonType.hpp"
+#include "../../include/Pokemon/StatusEffects/ParalyzedEffect.hpp"
+#include "../../include/Pokemon/StatusEffects/SleepEffect.hpp"
+#include "../../include/Pokemon/StatusEffects/BurnEffect.hpp"
+#include "../../include/Pokemon/StatusEffects/PoisonEffect.hpp"
 #include "../../include/Utility/Utility.hpp"
 
-using namespace N_Pokemon;
 using namespace std;
 
-namespace N_Pokemon
+namespace N_Pokemon 
 {
-    void Pokemon::setName(string n) 
-    { 
-        name = n; 
-    }
-
-    string Pokemon::getName() 
-    { 
-        return name; 
-    }
-
-    PokemonType Pokemon::setType(PokemonType t) 
-    { 
-        type = t; 
-        return type; 
-    }
-
-    PokemonType Pokemon::getType() 
-    { 
-        return type; 
-    }
-
-    void Pokemon::setHealth(int h) 
-    { 
-        health = h; 
-    }
-
-    int Pokemon::getHealth() 
-    { 
-        return health; 
-    }
-
-    void Pokemon::setMaxHealth(int mh) 
-    { 
-        maxHealth= mh; 
-    }
-
-    int Pokemon::getMaxHealth() 
-    { 
-        return maxHealth; 
-    }
-
-    void Pokemon::setAttackPower(int ap) 
-    { 
-        attackPower = ap; 
-    }
-
-    int Pokemon::getAttackPower() 
-    { 
-        return attackPower; 
-    }
-    
-    Pokemon::Pokemon()
+    Pokemon::Pokemon() 
     {
         name = "Unknown";
         type = PokemonType::Normal;
         health = 50;
-        maxHealth = 100;
-        attackPower = 10;
+        maxHealth = 50;
+        appliedEffect = nullptr;
     }
 
-    Pokemon::Pokemon(string p_name, PokemonType p_type, int p_maxHealth, int p_attackPower)
+    Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health, vector<Move> p_moves) 
     {
         name = p_name;
         type = p_type;
-        health = p_maxHealth;
-        maxHealth = p_maxHealth;
-        attackPower = p_attackPower;
+        maxHealth = p_health;
+        health = p_health;
+        moves = p_moves;
+        appliedEffect = nullptr;
     }
 
-    Pokemon::Pokemon(const Pokemon& other)
+    Pokemon::Pokemon(Pokemon* other) 
     {
-        name = other.name;
-        type = other.type;
-        health = other.health;
-        maxHealth = other.maxHealth;
-        attackPower = other.attackPower;
+        name = other->name;
+        type = other->type;
+        health = other->health;
+        maxHealth = other->maxHealth;
+        moves = other->moves;
     }
 
-    Pokemon::~Pokemon()
-    {
-        
-    }
-
-    void Pokemon::takeDamage(int damage)
+    void Pokemon::takeDamage(int damage) 
     {
         health -= damage;
 
-        if (health < 0)
+        if (health < 0) 
         {
             health = 0;
         }
     }
 
-    bool Pokemon::isFainted() const
-    {
-        return (health <= 0);
-    }
-
-    void Pokemon::heal()
-    {
-        health = maxHealth;
-    }
-
-    void Pokemon::attack(Move selectedMove, Pokemon* target) 
-    { 
-        target->takeDamage(selectedMove.power); 
-    }
-
-    void Pokemon::selectAndUseMove(Pokemon* target) 
+    void Pokemon::selectAndUseMove(Pokemon* target)
     {
         printAvailableMoves();
 
         int choice = selectMove();
-        Move selectedMove = moves[choice - 1];
 
+        if (choice - 1 < 0 || choice - 1 >= moves.size()) {
+            throw std::out_of_range("Invalid move index selected.");
+        }
+
+        Move selectedMove = moves[choice - 1];
         useMove(selectedMove, target);
     }
 
-    void Pokemon::reduceAttackPower(int amount)
+    void Pokemon::reduceAttackPower(int reduced_damage)
     {
-        attackPower -= amount;
-
-        if (attackPower < 0)
+        for (int i = 0; i < moves.size(); i++)
         {
-            attackPower = 0;
+            moves[i].power -= reduced_damage;
+
+            if (moves[i].power < 0)
+                moves[i].power = 0;
         }
     }
 
-    void Pokemon::printAvailableMoves() 
+    bool Pokemon::canAttack()
+    {
+        if (appliedEffect == nullptr)
+            return true;
+
+        else
+            return appliedEffect->turnEndEffect(this);
+    }
+
+    bool Pokemon::canApplyEffect() 
+    { 
+        return appliedEffect == nullptr; 
+    }
+
+    void Pokemon::applyEffect(StatusEffectType effectToApply)
+    {
+        switch (effectToApply)
+        {
+            case StatusEffectType::Paralyzed:
+                appliedEffect = new ParalyzedEffect();
+                appliedEffect->applyEffect(this);
+                break;
+
+            case StatusEffectType::Sleeping:
+                appliedEffect = new SleepEffect();
+                appliedEffect->applyEffect(this);
+                break;
+
+            case StatusEffectType::Burned:
+                appliedEffect = new BurnEffect();
+                appliedEffect->applyEffect(this);
+                break;
+
+            case StatusEffectType::Poisoned:
+                appliedEffect = new PoisonEffect();
+                appliedEffect->applyEffect(this);
+                break;
+
+            default:
+                appliedEffect = nullptr;
+        }
+    }
+
+    void Pokemon::clearEffect() 
+    { 
+        appliedEffect = nullptr; 
+    }
+
+    void Pokemon::printAvailableMoves()
     {
         cout << name << "'s available moves:\n";
 
-        for (size_t i = 0; i < moves.size(); ++i) 
-        {
+        for (size_t i = 0; i < moves.size(); ++i) {
             cout << i + 1 << ": " << moves[i].name << " (Power: " << moves[i].power << ")\n";
         }
     }
@@ -151,22 +135,20 @@ namespace N_Pokemon
     int Pokemon::selectMove()
     {
         int choice;
-        cout << "\nChoose a move: ";
+        cout << "Choose a move: ";
         cin >> choice;
 
-        while (choice < 1 || choice > static_cast<int>(moves.size())) 
-        {
-            cout << "\nInvalid choice. Try again: ";
+        while (choice < 1 || choice > static_cast<int>(moves.size())) {
+            cout << "Invalid choice. Try again: ";
             cin >> choice;
         }
 
         return choice;
     }
 
-    void Pokemon::useMove(Move selectedMove, Pokemon* target) 
+    void Pokemon::useMove(Move selectedMove, Pokemon* target)
     {
-        cout << "\n" << name << " used " << selectedMove.name << "!\n";
-
+        cout << name << " used " << selectedMove.name << "!\n";
         attack(selectedMove, target);
 
         N_Utility::Utility::waitForEnter();
@@ -175,10 +157,27 @@ namespace N_Pokemon
         N_Utility::Utility::waitForEnter();
 
         if (target->isFainted())
-            cout << "\n" << target->name << " fainted!\n";
-
+            cout << target->name << " fainted!\n";
         else
-            cout << "\n" << target->name << " has " << target->health << " HP left.\n";
+            cout << target->name << " has " << target->health << " HP left.\n";
     }
 
+    void Pokemon::attack(Move selectedMove, Pokemon* target) 
+    { 
+        target->takeDamage(selectedMove.power); 
+    }
+
+    bool Pokemon::isFainted() const 
+    { 
+        return health <= 0; 
+    }
+
+    void Pokemon::heal() 
+    { 
+        health = maxHealth; 
+    }
+
+    string Pokemon::getName() const {
+        return name;
+    }
 }

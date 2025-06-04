@@ -10,7 +10,7 @@ namespace N_Pokemon
         {
             public:
                 Bulbasaur();
-                void attack(Move selectedMove, Pokemon* target) override; // Updated to match the base class signature
+                void attack(Move selectedMove, Pokemon* target) override;
         };
     }
 }

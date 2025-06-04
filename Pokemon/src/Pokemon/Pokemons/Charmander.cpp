@@ -12,7 +12,8 @@ namespace N_Pokemon
     {
         Charmander::Charmander() :
             Pokemon("Charmander", PokemonType::Fire, 100, {
-                    Move("Flame Burst", 35),
+                    Move("Flame Burst", 5),
+                    Move("Blazing Charge", 60),
                     Move("Tackle", 10)
                 }) {
         }
@@ -26,6 +27,12 @@ namespace N_Pokemon
                 this->takeDamage(10);
                 cout << name << " takes 10 recoil damage from the Blazing Charge!\n";
                 N_Utility::Utility::waitForEnter();
+            }
+
+            if (selectedMove.name == "Flame Burst")
+            {
+                if (target->canApplyEffect())
+                    target->applyEffect(StatusEffectType::Burned);
             }
         }
     }

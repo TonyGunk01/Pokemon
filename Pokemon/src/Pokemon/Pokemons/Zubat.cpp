@@ -13,6 +13,7 @@ namespace N_Pokemon
 		Zubat::Zubat() :
 			Pokemon("Zubat", PokemonType::Poison, 100, {
 					Move("Super Sonic", 20),
+                    Move("Leech Life", 20),
 					Move("Tackle", 10)
 				}) {
 		}

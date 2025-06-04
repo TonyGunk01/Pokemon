@@ -12,28 +12,33 @@ namespace N_Pokemon
 
         Bulbasaur::Bulbasaur()  
             :Pokemon("Bulbasaur", PokemonType::Grass, 110, {  
-                    Move("Vine Whip", 25),   
+                    Move("Vine Whip", 25),
+					Move("Sleep Powder", 5),
                     Move("Tackle", 10)  
         }) {}  
 
-        void Bulbasaur::attack(Move selectedMove, Pokemon* target)  
-        {  
-            Pokemon::attack(selectedMove, target);  
-            selectAndUseMove(target);  
+        void Bulbasaur::attack(Move selectedMove, Pokemon* target)
+        {
+            if (selectedMove.name == "Wine Whip")
+            {
+                if (rand() % 100 < 80)
+                {
+                    Pokemon::attack(selectedMove, target);
+                    cout << "... and it hit successfully!\n";
+                }
 
-            if (selectedMove.name == "Vine Whip")  
-            {  
-                int secondHitChance = rand() % 2;  
+                else
+                    cout << "... but it missed!\n";
+            }
 
-                if (secondHitChance == 1)  
-                {  
-                    Pokemon::attack(selectedMove, target);  
-                    cout << name << " hits again with a second " << selectedMove.name << "!\n";  
-                } 
+            else
+                Pokemon::attack(selectedMove, target);
 
-                else  
-                    cout << target->getName() << " dodged the second hit!\n";  
-            }  
-        }  
+            if (selectedMove.name == "Sleep Powder")
+            {
+                if (target->canApplyEffect())
+                    target->applyEffect(StatusEffectType::Sleeping);
+            }
+        }
     }  
 }

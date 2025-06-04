@@ -13,6 +13,7 @@ namespace N_Pokemon
 		Caterpie::Caterpie() :
 			Pokemon("Caterpie", PokemonType::Bug, 100, {
 					Move("Bug Bite", 25),
+                    Move("Sticky Web", 45),
 					Move("Tackle", 10)
 				}) {
 		}
@@ -20,7 +21,7 @@ namespace N_Pokemon
         void Caterpie::attack(Move selectedMove, Pokemon* target)
         {
             int selectedMoveIndex = selectMove();
-            selectedMove = moves[selectedMoveIndex]; 
+            selectedMove = moves[selectedMoveIndex-1]; 
 
             Pokemon::attack(selectedMove, target);
             selectAndUseMove(target);
