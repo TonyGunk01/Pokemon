@@ -30,6 +30,7 @@ namespace N_Pokemon
 
             bool isFainted() const;
             void heal();
+			void resetValues();
 
             virtual void attack(Move selectedMove, Pokemon* target);
             void takeDamage(int damage);

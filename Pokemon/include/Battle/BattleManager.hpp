@@ -14,11 +14,7 @@ namespace N_Battle
 
 		void startBattle(Player& player, Pokemon& wildPokemon);
 
-        static void stopBattle();  
-        
-		void stopBattleInstance();
-
-		void updateBattleState();
+        static void stopBattle();
 
 	private:
 		BattleState battleState;

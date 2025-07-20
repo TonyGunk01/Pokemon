@@ -1,10 +1,12 @@
 #include "../../../include/Pokemon/StatusEffects/PoisonEffect.hpp"
 #include "../../../include/Pokemon/Pokemon.hpp"
 #include "../../../include/Pokemon/StatusEffects/StatusEffectType.hpp"
+#include "../../../include/Utility/Utility.hpp"
 
 #include <iostream>
 
 using namespace std;
+using namespace N_Utility;
 
 namespace N_Pokemon
 {
@@ -12,7 +14,11 @@ namespace N_Pokemon
     {
         void PoisonEffect::applyEffect(Pokemon* target)
         {
-            cout << target->getName() << " is poisoned! Special moves are blocked and normal damage is less effective...\n";
+            poison_dmg = rand() % 10 + 5;
+            target->health -= poison_dmg;
+            cout << "\n\n" << target->getName() << " is poisoned";
+            Utility::waitEffect();
+            cout << "\n\n" << target->getName() << " took " << poison_dmg << " damage!\n";
             turnsLeft = rand() % 3 + 1;
         }
 
@@ -29,23 +35,20 @@ namespace N_Pokemon
                 return true;
             }
 
-            turnsLeft--;
-
-            int burn_chance = rand() % 4;
-
-            if (burn_chance == 0)
+            if (poison_start > 0)
             {
-                cout << target->getName() << " is still poisoned! It tries its best to knock off the poison through its body....\n";
+                cout << "\n" << target->getName() << " is still poisoned! It looses " << poison_dmg << " health as it tries to shake off from the poison\n\n";
+				Utility::delay(2000);
+                turnsLeft--;
                 return false;
             }
 
-            cout << target->getName() << " braves through the poison as it gets ready to attack again..\n";
-            return true;
+            poison_start++;
         }
 
         void PoisonEffect::clearEffect(Pokemon* target)
         {
-            cout << target->getName() << " has recovered from the poison!\n";
+            cout << "\n" << target->getName() << " has recovered from the poison!\n";
             target->clearEffect();
         }
     }

@@ -9,6 +9,7 @@
 #include "../../include/Utility/Utility.hpp"
 
 using namespace std;
+using namespace N_Utility;
 
 namespace N_Pokemon 
 {
@@ -56,7 +57,8 @@ namespace N_Pokemon
 
         int choice = selectMove();
 
-        if (choice - 1 < 0 || choice - 1 >= moves.size()) {
+        if (choice - 1 < 0 || choice - 1 >= moves.size()) 
+        {
             throw std::out_of_range("Invalid move index selected.");
         }
 
@@ -68,12 +70,12 @@ namespace N_Pokemon
     {
         for (int i = 0; i < moves.size(); i++)
         {
-            moves[i].power -= reduced_damage;
+            moves[i].damage -= reduced_damage;
 
-            if (moves[i].power < 0)
-                moves[i].power = 0;
+            if (moves[i].damage < 0)
+                moves[i].damage = 0;
         }
-    }
+    } 
 
     bool Pokemon::canAttack()
     {
@@ -89,26 +91,36 @@ namespace N_Pokemon
         return appliedEffect == nullptr; 
     }
 
+    void Pokemon::resetValues()
+    {
+        health = maxHealth;
+        appliedEffect = nullptr;
+        for (auto& move : moves) 
+        {
+            move.damage = move.originalDamage;
+		}
+    }
+
     void Pokemon::applyEffect(StatusEffectType effectToApply)
     {
         switch (effectToApply)
         {
-            case StatusEffectType::Paralyzed:
+            case StatusEffectType::Paralyze:
                 appliedEffect = new ParalyzedEffect();
                 appliedEffect->applyEffect(this);
                 break;
 
-            case StatusEffectType::Sleeping:
+            case StatusEffectType::Sleep:
                 appliedEffect = new SleepEffect();
                 appliedEffect->applyEffect(this);
                 break;
 
-            case StatusEffectType::Burned:
+            case StatusEffectType::Burn:
                 appliedEffect = new BurnEffect();
                 appliedEffect->applyEffect(this);
                 break;
 
-            case StatusEffectType::Poisoned:
+            case StatusEffectType::Poison:
                 appliedEffect = new PoisonEffect();
                 appliedEffect->applyEffect(this);
                 break;
@@ -125,11 +137,12 @@ namespace N_Pokemon
 
     void Pokemon::printAvailableMoves()
     {
-        cout << name << "'s available moves:\n";
+        cout << "\n" << name << "'s available moves:\n";
 
-        for (size_t i = 0; i < moves.size(); ++i) {
-            cout << i + 1 << ": " << moves[i].name << " (Power: " << moves[i].power << ")\n";
-        }
+        for (size_t i = 0; i < moves.size(); ++i) 
+            cout << i + 1 << ": " << moves[i].name << " (Power: " << moves[i].damage << ")\n";
+
+        cout << "\n";
     }
 
     int Pokemon::selectMove()
@@ -148,23 +161,28 @@ namespace N_Pokemon
 
     void Pokemon::useMove(Move selectedMove, Pokemon* target)
     {
-        cout << name << " used " << selectedMove.name << "!\n";
         attack(selectedMove, target);
 
-        N_Utility::Utility::waitForEnter();
-
-        cout << "...\n";
-        N_Utility::Utility::waitForEnter();
-
         if (target->isFainted())
-            cout << target->name << " fainted!\n";
+        {
+            Utility::delay(1500);
+            cout << "\n" << target->name << " fainted!\n";
+            Utility::delay(2000);
+        }
+
         else
-            cout << target->name << " has " << target->health << " HP left.\n";
+        {
+            Utility::delay(1500);
+            cout << "\n" << target->name << " has " << target->health << " HP left. ";
+            Utility::delay(1500);
+            cout << name << " has " << health << " HP left.\n";
+            Utility::delay(2200);
+        }
     }
 
     void Pokemon::attack(Move selectedMove, Pokemon* target) 
     { 
-        target->takeDamage(selectedMove.power); 
+        target->takeDamage(selectedMove.damage); 
     }
 
     bool Pokemon::isFainted() const 
@@ -172,12 +190,8 @@ namespace N_Pokemon
         return health <= 0; 
     }
 
-    void Pokemon::heal() 
-    { 
-        health = maxHealth; 
-    }
-
-    string Pokemon::getName() const {
+    string Pokemon::getName() const 
+    {
         return name;
     }
 }

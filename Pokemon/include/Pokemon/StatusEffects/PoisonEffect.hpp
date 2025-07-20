@@ -10,6 +10,8 @@ namespace N_Pokemon
 		{
 		private:
 			int turnsLeft;
+			int poison_dmg;
+			int poison_start;
 
 		public:
 			void applyEffect(Pokemon* target) override;

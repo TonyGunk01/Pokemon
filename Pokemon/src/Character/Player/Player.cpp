@@ -9,11 +9,11 @@
 
 #include <iostream>
 
-using namespace N_Pokemons;
 using namespace N_Utility;
 using namespace N_Pokemon;
 using namespace N_Player;
 using namespace std;
+using namespace N_Pokemon::N_Pokemons;
 
 namespace N_Player 
 {
@@ -34,31 +34,31 @@ namespace N_Player
             case PokemonChoice::Bulbasaur:
                 chosenPokemon = new Bulbasaur();
                 cout << "\nNice choice! Bulbasaur is a grass type Pokemon and is super mighty!" << endl;
-                Utility::waitForEnter();
                 break;
 
             case PokemonChoice::Charmander:
                 chosenPokemon = new Charmander();
                 cout << "\nAh, great selection! Charmander is a fire type Pokemon and can be quite formidable!" << endl;
-                Utility::waitForEnter();
                 break;
 
             case PokemonChoice::Squirtle:
                 chosenPokemon = new Squirtle();
                 cout << "\nGood decision! Squirtle is a water type Pokemon with a tough fight in him!" << endl;
-                Utility::waitForEnter();
                 break;
 
             default:
                 chosenPokemon = new Pikachu();
 				cout << "\nHmm, it looks like you didn't choose a Pokemon. Pikachu, the powerful electric type Pokemon will be your companion!" << endl;
-                Utility::waitForEnter();
                 break;
         }
 
-		cout << "\nYou have chosen " << chosenPokemon->getName() << " as your first Pokemon!" << endl;
+        Utility::delay(2000);
+        cout << "\n" << chosenPokemon->getName() << " has been added to your team!" << endl;
 
-        Utility::waitForEnter();
-        Utility::clearConsole();
+        Utility::delay(2000);
+        cout << "\nNow, " << name << ", you are ready to embark on your Pokemon journey!" << endl;
+
+		Utility::delay(1500);
+        Utility::waitEffect();
     }
 }

@@ -12,6 +12,7 @@ namespace N_Pokemon
         Poison,
         Bug,
         Rock,
+        Flying,
         Normal
     };
 }

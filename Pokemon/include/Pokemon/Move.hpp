@@ -9,12 +9,15 @@ namespace N_Pokemon
 	struct Move
 	{
 		string name;
-		int power;
+		int damage;
+		int originalDamage;
 
-		Move(const string& moveName, int movePower) : name(moveName), power(movePower) 
+		Move(const string& moveName, int moveDamage) 
+			: name(moveName), damage(moveDamage), originalDamage(moveDamage)
 		{
 			name = moveName;
-			power = movePower;
+			damage = moveDamage;
+			originalDamage = moveDamage; 
 		}
 	};
 }

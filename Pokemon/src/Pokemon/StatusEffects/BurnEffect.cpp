@@ -1,10 +1,13 @@
 #include "../../../include/Pokemon/StatusEffects/BurnEffect.hpp"
 #include "../../../include/Pokemon/Pokemon.hpp"
 #include "../../../include/Pokemon/StatusEffects/StatusEffectType.hpp"
+#include "../../../include/Utility/Utility.hpp"
 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
+using namespace N_Utility;
 
 namespace N_Pokemon
 {
@@ -12,8 +15,11 @@ namespace N_Pokemon
     {
         void BurnEffect::applyEffect(Pokemon* target)
         {
-            cout << target->getName() << " is burning! It loses health every turn\n";
-            target->health -= 5;
+            burn_dmg = rand() % 10 + 5;
+            target->health -= burn_dmg;
+            cout << "\n" << target->getName() << " is burning";
+            Utility::waitEffect();
+            cout << "\n\n" << target->getName() <<" took " << burn_dmg << " damage!\n";
             turnsLeft = rand() % 3 + 1;
         }
 
@@ -30,23 +36,21 @@ namespace N_Pokemon
                 return true;
             }
 
-            turnsLeft--;
-
-            int burn_chance = rand() % 4;
-
-            if (burn_chance == 0)
+            if (burn_start > 0)
             {
-                cout << target->getName() << " is still burning! He looses some health as he tries to extinguish the flames..!\n";
+                cout << "\n" << target->getName() << " is still burning! It looses " << burn_dmg << " health as it tries to remove the flames";
+                Utility::waitEffect();
+                cout << "\n";
+                turnsLeft--;
                 return false;
             }
 
-            cout << target->getName() << " braves through the hot flames as it tries to attack again..\n";
-            return true;
+            burn_start++;
         }
 
         void BurnEffect::clearEffect(Pokemon* target)
         {
-            cout << target->getName() << " has stopped burning!\n";
+            cout << "\n" << target->getName() << " has stopped burning!\n";
             target->clearEffect();
         }
     }

@@ -2,43 +2,88 @@
 #include "../../../include/Pokemon/PokemonType.hpp"  
 #include "../../../include/Utility/Utility.hpp"  
 
-#include <iostream>  
+#include <iostream>
+
+using namespace N_Utility;
 
 namespace N_Pokemon  
 {  
     namespace N_Pokemons  
-    {  
-        using namespace std;  
-
+    {
         Bulbasaur::Bulbasaur()  
-            :Pokemon("Bulbasaur", PokemonType::Grass, 110, {  
-                    Move("Vine Whip", 25),
-					Move("Sleep Powder", 5),
-                    Move("Tackle", 10)  
+            :Pokemon("Bulbasaur", PokemonType::Grass, 150, {  
+                    Move("Vine Whip", 35),  
+                    Move("Sleep Powder", 5),  
+                    Move("Tackle", 20)
         }) {}  
 
-        void Bulbasaur::attack(Move selectedMove, Pokemon* target)
-        {
-            if (selectedMove.name == "Wine Whip")
-            {
-                if (rand() % 100 < 80)
-                {
+        void Bulbasaur::attack(Move selectedMove, Pokemon* target)  
+        {  
+            cout << "\n" << name << " tries to use " << selectedMove.name << " on " << target->name;
+
+            if (selectedMove.name == "Tackle")  
+            {  
+                Utility::delay(200);
+                Utility::waitEffect();
+
+                if (rand() % 100 < 80)  
+                {   
+                    cout << " and it was successful!\n\n";  
+                    Utility::delay(1500);
                     Pokemon::attack(selectedMove, target);
-                    cout << "... and it hit successfully!\n";
-                }
+                    cout << target->getName() << " took " << selectedMove.damage << " damage!\n";  
+                }  
 
-                else
-                    cout << "... but it missed!\n";
-            }
+                else  
+                    cout << " but it missed!\n";  
 
-            else
-                Pokemon::attack(selectedMove, target);
+				Utility::delay(1000);
+            }  
 
-            if (selectedMove.name == "Sleep Powder")
-            {
-                if (target->canApplyEffect())
-                    target->applyEffect(StatusEffectType::Sleeping);
-            }
-        }
+            else if (selectedMove.name == "Vine Whip")  
+            {  
+                Utility::delay(200);
+                Utility::waitEffect();
+
+                if (rand() % 100 < 80)  
+                {  
+                    cout << " and it was successful!\n\n";
+                    Utility::delay(1500);
+                    Pokemon::attack(selectedMove, target);  
+
+                    cout << target->getName() << " took " << selectedMove.damage << " damage!\n"; 
+                    Utility::delay(1500);
+                    Utility::heavyHit();
+                }  
+
+                else  
+                    cout << " but it missed!\n";  
+
+				Utility::delay(1000);
+            }  
+
+            else if (selectedMove.name == "Sleep Powder")  
+            {  
+                Utility::delay(200);
+                Utility::waitEffect();
+
+                if (rand() % 100 < 70)  
+                {  
+                    cout << "and it was successful!\n\n";
+                    Utility::delay(1500);
+                    Pokemon::attack(selectedMove, target);  
+                    cout << target->getName() << " took " << selectedMove.damage << " damage!\n";
+                    Utility::delay(2000);
+
+                    if (target->canApplyEffect())  
+                        target->applyEffect(StatusEffectType::Sleep);  
+                }  
+
+                else  
+                    cout << "but it missed!\n";  
+
+				Utility::delay(1000);
+            }  
+        }  
     }  
 }

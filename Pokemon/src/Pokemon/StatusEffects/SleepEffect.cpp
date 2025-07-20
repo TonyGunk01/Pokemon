@@ -1,10 +1,14 @@
 #include "../../../include/Pokemon/StatusEffects/SleepEffect.hpp"
 #include "../../../include/Pokemon/Pokemon.hpp"
 #include "../../../include/Pokemon/StatusEffects/StatusEffectType.hpp"
+#include "../../../include/Utility/Utility.hpp"
 
 #include <iostream>
 
 using namespace std;
+using namespace N_Utility;
+
+int sleep_start;
 
 namespace N_Pokemon
 {
@@ -12,7 +16,9 @@ namespace N_Pokemon
     {
         void SleepEffect::applyEffect(Pokemon* target)
         {
-            cout << target->getName() << " is sleeping! It'll take a while for it to wake up...\n";
+            cout << "\n" << target->getName() << " is sleeping! It'll take a while for it to wake up";
+			Utility::waitEffect();
+			cout << "\n";
 
             turnsLeft = rand() % 3 + 1;
         }
@@ -30,23 +36,21 @@ namespace N_Pokemon
                 return true;
             }
 
-            turnsLeft--;
-
-            int paralysis_chance = rand() % 4;
-
-            if (paralysis_chance == 0)
+            else if (sleep_start > 0)
             {
-                cout << target->getName() << " is now fast asleep! It'll take a while for it to wake up..!\n";
+                cout << "\n" << target->getName() << " is in a deep sleep! It can't move!\n";
+                Utility::delay(2000);
+                turnsLeft--;
                 return false;
             }
 
-            cout << target->getName() << " brisks off the sleepiness vigourously and can move!\n";
-            return true;
+            sleep_start++;
         }
 
         void SleepEffect::clearEffect(Pokemon* target)
         {
-            cout << target->getName() << " is now awake!\n";
+            cout << "\n" << target->getName() << " is now awake!\n";
+            Utility::delay(2000);
             target->clearEffect();
         }
     }

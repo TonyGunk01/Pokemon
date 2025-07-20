@@ -2,5 +2,8 @@
 
 namespace N_Battle 
 {
-    StatusEffect::~StatusEffect() {}
+    StatusEffect::~StatusEffect() 
+	{
+	
+	}
 }

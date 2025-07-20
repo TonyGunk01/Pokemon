@@ -10,6 +10,8 @@ namespace N_Pokemon
 		{
 			private:
 				int turnsLeft;
+				int burn_dmg;
+				int burn_start = 0;
 
 			public:
 				void applyEffect(Pokemon* target) override;

@@ -1,11 +1,11 @@
 #pragma once
 
 #include <string>
-
 #include "Player/Player.hpp"
 
 using namespace N_Player;
 using namespace std;
+
 namespace N_Character
 {
 	class ProfessorOak

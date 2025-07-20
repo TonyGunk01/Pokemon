@@ -10,6 +10,7 @@ namespace N_Pokemon
 		{
 			private:
 				int turnsLeft;
+				int paralysis_start = 0;
 
 			public:
 				void applyEffect(Pokemon* target) override;

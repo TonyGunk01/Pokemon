@@ -6,10 +6,10 @@ namespace N_Pokemon
     {
         enum class StatusEffectType
         {
-            Paralyzed,
-            Sleeping,
-            Burned,
-            Poisoned
+            Paralyze,
+            Sleep,
+            Burn,
+            Poison
         };
     }
 }
