@@ -6,4 +6,4 @@ The player gets to choose between 3 starter Pokemons as they would in the classi
 
 The player will be greeted by Professor Oak and can choose which of the classical Pokemon regions they can enter: Kanto, Johto, etc and randomly encounter a Pokemon in the wild! The player can choose to go and explore the wild for Pokemons to fight or go to the PokeCenter to heal your Pokemon.
 
-Video demo: https://youtu.be/RrH5IG-63cE
+[Click here for a video demo](https://youtu.be/FNtRV8VMqaQ)
